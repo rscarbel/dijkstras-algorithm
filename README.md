@@ -5,7 +5,8 @@ This is a pathfinding algorithm to find the shortest distance between two points
 The paths are weighted - meaning that some routes are harder to travel on than others. In real-life, this could be due to things such as traffic, slow speed limits, or long distances.
 
 ## How to use
-Currently, I am in the process of developing this, and don't have a ui yet.
+Currently, you can only see a sample graph as text. There's no deployment anywhere.
+
 To see what works, run "npm test" to execute my test suites.
 
 ### Things needed to be created for this project
