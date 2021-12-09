@@ -26,8 +26,8 @@ describe ('graph methods & attributes', () => {
     expect(Object.keys(graph1.nodes).length).toBe(1)
   });
 
-  test ('the first node in the graph should have connection weight 0', () => {
-    expect(graph1.nodes[Object.keys(graph1.nodes)[0]][Object.keys(graph1.nodes)[0]]).toBe(0)
+  test ('the initial node in the graph should have connection weight 0', () => {
+    expect(graph1.nodes.A.A).toBe(0)
   });
 
 })
