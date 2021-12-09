@@ -30,6 +30,7 @@ class Graph {
     this.nodes[node][node] = 0;
   }
 
+  //false can be passed in as a third argument to only create the connection one-way
   addConnection(node, connection, weight, bidirectional = true) {
     this.nodes[node][connection] = weight;
     if (bidirectional) {
@@ -37,6 +38,7 @@ class Graph {
     };
   };
 
+  //false can be passed in as a third argument to only delete the connection one-way
   deleteConnection(node, connection, bidirectional=true) {
     delete this.nodes[node][connection]
     if (bidirectional) {
