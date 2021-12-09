@@ -3,6 +3,7 @@
 This is a pathfinding algorithm to find the shortest distance between two points. Google/Apple maps uses this kind of algorithm to produce directions.
 
 The paths are weighted - meaning that some routes are harder to travel on than others. In real-life, this could be due to things such as traffic, slow speed limits, or long distances.
+![graph-data-structure-for-dijkstras-algorithm](https://user-images.githubusercontent.com/40727301/145475715-ef340763-90aa-408d-91c3-8237d0b8f13e.png)
 
 ## How to use
 Currently, you can only see a sample graph as text. There's no deployment anywhere.
