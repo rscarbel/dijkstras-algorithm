@@ -30,7 +30,20 @@ describe ('graph methods & attributes', () => {
     expect(graph1.nodes.A.A).toBe(0)
   });
 
-})
+  test('the addNode method should add a node to the graph nodes object', () => {
+    const graphTemp = new Graph('A');
+    graphTemp.addNode('B')
+    expect(!!graphTemp.nodes.B).toBe(true)
+  })
+
+  test('the addNode should add a connection between two nodes passed in', () => {
+    const graphTemp = new Graph('A');
+    graphTemp.addNode('B');
+    graphTemp.addConnection('B','A',1)
+    expect(graphTemp.nodes.B.A).toBe(1);
+  });
+
+});
 /*
 new node
 

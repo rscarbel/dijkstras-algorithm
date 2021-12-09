@@ -20,10 +20,22 @@
 
 class Graph {
   constructor (node){
-    this.nodes = {}
+    this.nodes = {};
     this.nodes[node] = {};
-    this.nodes[node][node] = 0
+    this.nodes[node][node] = 0;
   }
+
+  addNode(node) {
+    this.nodes[node] = {}
+    this.nodes[node][node] = 0;
+  }
+
+  addConnection(node, connection, weight, bidirectional = true) {
+    this.nodes[node][connection] = weight;
+    if (bidirectional) {
+      this.nodes[connection][node] = weight;
+    };
+  };
 };
 
 export default Graph;
