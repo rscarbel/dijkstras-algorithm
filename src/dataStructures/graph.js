@@ -21,7 +21,8 @@
 class Graph {
   constructor (node){
     this.nodes = {}
-    this.nodes[this.node] = 0
+    this.nodes[node] = {};
+    this.nodes[node][node] = 0
   }
 };
 
