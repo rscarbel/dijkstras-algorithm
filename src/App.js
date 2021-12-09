@@ -1,10 +1,12 @@
-import dikstraAlorithm from './components/dikstraAlgorithm';
+import DikstrasAlgorithm from './components/DikstrasAlgorithm'
+import React from 'react';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <dikstraAlorithm />
+      <h1>Dikstra's Algorithm</h1>
+      <DikstrasAlgorithm />
     </div>
   );
 }
