@@ -23,11 +23,13 @@ class Graph {
     this.nodes = {};
     this.nodes[node] = {};
     this.nodes[node][node] = 0;
+    this.nodes[node].incomingNodes = [node]
   }
 
   addNode(node) {
     this.nodes[node] = {}
     this.nodes[node][node] = 0;
+    this.nodes[node].incomingNodes = [node]
   }
 
   //false can be passed in as a third argument to only create the connection one-way
@@ -44,7 +46,12 @@ class Graph {
     if (bidirectional) {
       delete this.nodes[connection][node]
     }
+  };
+
+  deleteNode(node) {
+    delete this.nodes[node]
   }
+
 };
 
 export default Graph;
