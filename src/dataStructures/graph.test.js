@@ -1,10 +1,3 @@
-/*
-1. visual represention of the graph/nodes
-2. Graph datastructure
-    - nodes attached to each location
-        -difficulty of the route
-*/
-
 import Graph from './graph'
 
 let graph1 = new Graph('A')
@@ -41,6 +34,14 @@ describe ('graph methods & attributes', () => {
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
     expect(graphTemp.nodes.B.A).toBe(1);
+  });
+
+  test('the deleteConnection should add a connection between two nodes passed in', () => {
+    const graphTemp = new Graph('A');
+    graphTemp.addNode('B');
+    graphTemp.addConnection('B','A',1)
+    graphTemp.deleteConnection('A','B')
+    expect(graphTemp.nodes.B.A).toBe(undefined);
   });
 
 });

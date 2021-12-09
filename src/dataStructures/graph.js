@@ -36,6 +36,13 @@ class Graph {
       this.nodes[connection][node] = weight;
     };
   };
+
+  deleteConnection(node, connection, bidirectional=true) {
+    delete this.nodes[node][connection]
+    if (bidirectional) {
+      delete this.nodes[connection][node]
+    }
+  }
 };
 
 export default Graph;
