@@ -65,7 +65,7 @@ class Graph {
     };
     //get rid of property since there are no longer references from other nodes
     delete this.nodes[node].incomingNodes;
-    //delete all references to this node in other nodes's incomingNodes array
+    //delete all references to this node in other incomingNodes arrays
     const outgoingNodes = Object.keys(this.nodes[node]);
 
     outgoingNodes.forEach(e => {
