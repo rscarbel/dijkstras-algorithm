@@ -34,17 +34,26 @@ class Graph {
 
   //false can be passed in as a third argument to only create the connection one-way
   addConnection(node, connection, weight, bidirectional = true) {
+    // add neighbor & its weight to the node
     this.nodes[node][connection] = weight;
+    // add neighbor to the list of incoming nodes
+    this.nodes[node].incomingNodes.push(connection)
+    // if the connection goes both ways, add it for the other node as well
     if (bidirectional) {
       this.nodes[connection][node] = weight;
+      this.nodes[connection].incomingNodes.push(node)
     };
   };
 
   //false can be passed in as a third argument to only delete the connection one-way
   deleteConnection(node, connection, bidirectional=true) {
+    //delete node from connections
     delete this.nodes[node][connection]
+    //delete node from incomingNodes
+    this.nodes[node].incomingNodes.splice(this.nodes[node].incomingNodes.indexOf(connection),1)
     if (bidirectional) {
       delete this.nodes[connection][node]
+      this.nodes[connection].incomingNodes.splice(this.nodes[connection].incomingNodes.indexOf(node),1)
     }
   };
 

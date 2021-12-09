@@ -36,19 +36,34 @@ describe ('graph methods & attributes', () => {
     expect(!!graphTemp.nodes.B).toBe(true)
   })
 
-  test('the addNode should add a connection between two nodes passed in', () => {
+  test('the addConnection should add a connection between two nodes passed in', () => {
     const graphTemp = new Graph('A');
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
     expect(graphTemp.nodes.B.A).toBe(1);
   });
 
-  test('the deleteConnection should add a connection between two nodes passed in', () => {
+  test('the addConnection should add a the connected node to the incomingNodes array', () => {
+    const graphTemp = new Graph('A');
+    graphTemp.addNode('B');
+    graphTemp.addConnection('B','A',1)
+    expect(graphTemp.nodes.B.incomingNodes.indexOf('A')).not.toBe(-1)
+  });
+
+  test('the deleteConnection should remove the connection between two nodes passed in', () => {
     const graphTemp = new Graph('A');
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
     graphTemp.deleteConnection('A','B')
     expect(graphTemp.nodes.B.A).toBe(undefined);
+  });
+
+  test('the deleteConnection should remove the node from incomingNodes', () => {
+    const graphTemp = new Graph('A');
+    graphTemp.addNode('B');
+    graphTemp.addConnection('B','A',1)
+    graphTemp.deleteConnection('A','B')
+    expect(graphTemp.nodes.B.incomingNodes.indexOf('A')).toBe(-1);
   });
 
   test('the deleteNode method should delete the node', () => {
