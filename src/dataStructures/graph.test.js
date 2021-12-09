@@ -71,7 +71,17 @@ describe ('graph methods & attributes', () => {
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
     graphTemp.deleteNode('A')
+    console.log(graphTemp)
+    console.log(graphTemp.nodes.B.incomingNodes)
     expect(graphTemp.nodes.A).toBe(undefined);
+  });
+
+  test('the deleteNode method should remove references from nodes that were connected to the deleted node', () => {
+    const graphTemp = new Graph('A');
+    graphTemp.addNode('B');
+    graphTemp.addConnection('B','A',1)
+    graphTemp.deleteNode('A')
+    expect(graphTemp.nodes.B.incomingNodes.length).toBe(1);
   });
 
 });
