@@ -14,8 +14,8 @@ function App() {
         <div className='relative-container'>
           <h1>Dikstra's Algorithm</h1>
           {nodes.map(e => {
-            let change = generateNumber(100,75)
-            if (verticle < 75) {
+            let change = generateNumber(110,75)
+            if (verticle < 110) {
               verticle += change;
             }
             else if (verticle > 200){
