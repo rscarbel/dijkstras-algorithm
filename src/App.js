@@ -1,7 +1,8 @@
-import React from 'react';
+import { useRef, React } from 'react';
 import Node from './components/Node';
 import './App.css';
 import sampleGraph from './components/sampleGraph';
+import Line from './components/Line';
 
 function App() {
   let nodes = Object.keys(sampleGraph.nodes);
@@ -15,7 +16,7 @@ function App() {
           <h1>Dikstra's Algorithm</h1>
           {nodes.map(e => {
             let change = generateNumber(110,75)
-            if (verticle < 110) {
+            if (verticle < 120) {
               verticle += change;
             }
             else if (verticle > 200){
@@ -27,9 +28,10 @@ function App() {
                 verticle -= change;
               }
             }
-            horizontal += 50;
+            horizontal += generateNumber(60,27);
             return <Node name={e} x={horizontal} y={verticle} />
         })}
+        <Line left1={20} left2={20} right1={450} right2={450} />
       </div>
     </div>
   );
