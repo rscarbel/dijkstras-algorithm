@@ -5,14 +5,30 @@ import sampleGraph from './components/sampleGraph';
 
 function App() {
   let nodes = Object.keys(sampleGraph.nodes);
-  const generateNumber = () => Math.floor((Math.random() * 400) + 50);
+  const generateNumber = (max,min) => Math.floor((Math.random() * max) + min);
+  let horizontal = 0;
+  let verticle = 200;
   return (
     <div className="App">
         {console.log(JSON.stringify(sampleGraph))}
         <div className='relative-container'>
           <h1>Dikstra's Algorithm</h1>
           {nodes.map(e => {
-            return <Node name={e} x={generateNumber()} y={generateNumber()} />
+            let change = generateNumber(100,75)
+            if (verticle < 75) {
+              verticle += change;
+            }
+            else if (verticle > 200){
+              verticle -= change;
+            } else {
+              if (generateNumber(1.99,1)) {
+                verticle += change;
+              } else {
+                verticle -= change;
+              }
+            }
+            horizontal += 50;
+            return <Node name={e} x={horizontal} y={verticle} />
         })}
       </div>
     </div>
