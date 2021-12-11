@@ -31,7 +31,7 @@ function App() {
               }
             }
             horizontal += generateNumber(50,26);
-            domNodes.push(<Node key={e} name={e} x={horizontal} y={verticle}  />)
+            domNodes.push(<Node key={e} name={e} x={horizontal} y={verticle} r={generateNumber(250,5)} g={generateNumber(250,5)} b={generateNumber(250,5)}  />)
             domNodesByKey[e] = {}
             domNodesByKey[e].x = horizontal;
             domNodesByKey[e].y = verticle;
@@ -46,7 +46,7 @@ function App() {
           connectedNodes.forEach(i => {
             let endingX = parseInt(domNodesByKey[i].x) + 25;
             let endingY = parseInt(domNodesByKey[i].y) + 25;
-            lines.push(<Line left1={startingX} left2={startingY} right1={endingX} right2={endingY} width={parseInt(sampleGraph.nodes[e.props.name][i]) ** 1.5} />)
+            lines.push(<Line left1={startingX} left2={startingY} right1={endingX} right2={endingY} width={parseInt(sampleGraph.nodes[e.props.name][i]) ** 1.7} />)
           })
           return lines;
         })}

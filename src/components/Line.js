@@ -1,4 +1,5 @@
 const Line = ({left1, left2, right1, right2, width }) => {
+  let rgbVal = 70 + width * 8;
   const elementStyle = {
     zIndex: -1,
     position: 'absolute',
@@ -6,7 +7,7 @@ const Line = ({left1, left2, right1, right2, width }) => {
     left: 0
   }
   return <svg style={elementStyle} width='100%' height='100%'>
-    <line fill="none" stroke="#000000" strokeWidth={width}
+    <line fill="none" stroke={`rgb(${rgbVal},0,0)`} strokeWidth={width}
     x1={left1}
     y1={left2}
     x2={right1}
