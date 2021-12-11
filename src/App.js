@@ -9,6 +9,8 @@ function App() {
   const generateNumber = (max,min) => Math.floor((Math.random() * max) + min);
   let horizontal = 0;
   let verticle = 200;
+  let domNodes = [];
+  let domNodesByKey = {};
   return (
     <div className="App">
         {console.log(JSON.stringify(sampleGraph))}
@@ -29,9 +31,26 @@ function App() {
               }
             }
             horizontal += generateNumber(60,27);
-            return <Node name={e} x={horizontal} y={verticle} />
+            domNodes.push(<Node key={e} name={e} x={horizontal} y={verticle}  />)
+            domNodesByKey[e] = {}
+            domNodesByKey[e].x = horizontal;
+            domNodesByKey[e].y = verticle;
+
         })}
-        <Line left1={20} left2={20} right1={450} right2={450} />
+        {domNodes.map(e => {
+          const lines = []
+          const connectedNodes = Object.keys(sampleGraph.nodes[e.props.name]);
+          connectedNodes.splice(connectedNodes.indexOf('incomingNodes'),1);
+          let startingX = parseInt(e.props.x) + 25;
+          let startingY = parseInt(e.props.y) + 25;
+          connectedNodes.forEach(i => {
+            let endingX = parseInt(domNodesByKey[i].x) + 25;
+            let endingY = parseInt(domNodesByKey[i].y) + 25;
+            lines.push(<Line left1={startingX} left2={startingY} right1={endingX} right2={endingY} />)
+          })
+          return lines;
+        })}
+        {domNodes}
       </div>
     </div>
   );
