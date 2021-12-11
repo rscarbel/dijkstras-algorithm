@@ -31,7 +31,7 @@ function App() {
               }
             }
             horizontal += generateNumber(50,26);
-            domNodes.push(<Node key={e} name={e} x={horizontal} y={verticle} r={generateNumber(250,5)} g={generateNumber(250,5)} b={generateNumber(250,5)}  />)
+            domNodes.push(<Node key={e} name={e} x={horizontal} y={verticle} />)
             domNodesByKey[e] = {}
             domNodesByKey[e].x = horizontal;
             domNodesByKey[e].y = verticle;
