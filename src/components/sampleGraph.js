@@ -12,7 +12,7 @@ const shuffleArray = (array) => {
 }
 
 const calculateWeight = () => {
-  let val = generateNumber(20, 0)
+  let val = generateNumber(21, 0)
   if (val === 13 ) {
     return 7
   } else if (val === 12) {
@@ -24,10 +24,10 @@ const calculateWeight = () => {
   else if (val === 10) {
     return 4
   }
-  else if (val === 9) {
+  else if ((val === 9) || (val === 8)) {
     return 3
   }
-  else if (val === 8) {
+  else if ((val <= 7) && (val >= 5)) {
     return 2
   }
   else {
