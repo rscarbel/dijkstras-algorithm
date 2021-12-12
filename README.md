@@ -6,7 +6,7 @@ The paths are weighted - meaning that some routes are harder to travel on than o
 ![graph-data-structure-for-dijkstras-algorithm](https://user-images.githubusercontent.com/40727301/145475715-ef340763-90aa-408d-91c3-8237d0b8f13e.png)
 
 ## How to use
-Currently, you can only see a sample graph as text. There's no deployment anywhere.
+npm start will show display a randomly generated graph. There's no deployment anywhere.
 
 To see what works, run "npm test" to execute my test suites.
 
