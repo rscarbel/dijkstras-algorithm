@@ -46,7 +46,7 @@ function App() {
           connectedNodes.forEach(i => {
             let endingX = parseInt(domNodesByKey[i].x) + 25;
             let endingY = parseInt(domNodesByKey[i].y) + 25;
-            lines.push(<Line left1={startingX} left2={startingY} right1={endingX} right2={endingY} width={parseInt(sampleGraph.nodes[e.props.name][i]) ** 1.1} />)
+            lines.push(<Line left1={startingX} left2={startingY} right1={endingX} right2={endingY} weight={sampleGraph.nodes[e.props.name][i]} width={parseInt(sampleGraph.nodes[e.props.name][i]) ** 1.1} />)
           })
           return lines;
         })}
