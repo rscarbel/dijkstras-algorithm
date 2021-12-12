@@ -1,4 +1,3 @@
-import { useRef, React } from 'react';
 import Node from './components/Node';
 import './App.css';
 import sampleGraph from './components/sampleGraph';
@@ -7,8 +6,10 @@ import Line from './components/Line';
 function App() {
   let nodes = Object.keys(sampleGraph.nodes);
   const generateNumber = (max,min) => Math.floor((Math.random() * max) + min);
+  let height = window.innerHeight - 50;
+  let horizontalSpacing = window.innerWidth / nodes.length
   let horizontal = 0;
-  let verticle = 200;
+  let verticle = height/2;
   let domNodes = [];
   let domNodesByKey = {};
   return (
@@ -17,20 +18,20 @@ function App() {
         <div className='relative-container'>
           <h1>Dikstra's Algorithm</h1>
           {nodes.map(e => {
-            let change = generateNumber(110,75)
-            if (verticle < 120) {
+            let change = generateNumber((height/3),50)
+            if ((verticle - change) < 50) {
               verticle += change;
             }
-            else if (verticle > 200){
+            else if ((verticle + change) > (height - 50)){
               verticle -= change;
             } else {
-              if (generateNumber(1.99,1)) {
+              if (generateNumber(2,0)) {
                 verticle += change;
               } else {
                 verticle -= change;
               }
             }
-            horizontal += generateNumber(50,26);
+            horizontal += generateNumber(horizontalSpacing,26);
             domNodes.push(<Node key={e} name={e} x={horizontal} y={verticle} />)
             domNodesByKey[e] = {}
             domNodesByKey[e].x = horizontal;
@@ -50,6 +51,7 @@ function App() {
           })
           return lines;
         })}
+        {console.log(height)}
         {domNodes}
       </div>
     </div>
