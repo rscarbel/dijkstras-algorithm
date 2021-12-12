@@ -3,6 +3,7 @@
 This is a pathfinding algorithm to find the shortest distance between two points. Google/Apple maps uses this kind of algorithm to produce directions.
 
 The paths are weighted - meaning that some routes are harder to travel on than others. In real-life, this could be due to things such as traffic, slow speed limits, or long distances.
+
 ![dikstra_screenshot](https://user-images.githubusercontent.com/40727301/145725904-e83d8147-4777-4093-a085-afe989166238.png)
 
 ## How to use
