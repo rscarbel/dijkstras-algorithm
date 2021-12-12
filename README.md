@@ -4,6 +4,8 @@ This is a pathfinding algorithm to find the shortest distance between two points
 
 The paths are weighted - meaning that some routes are harder to travel on than others. In real-life, this could be due to things such as traffic, slow speed limits, or long distances.
 
+![dikstra_screenshot_2](https://user-images.githubusercontent.com/40727301/145726312-526d79b4-2c8d-4226-a101-8bbb776c8c50.png)
+
 ![dikstra_screenshot](https://user-images.githubusercontent.com/40727301/145725904-e83d8147-4777-4093-a085-afe989166238.png)
 
 ## How to use
