@@ -17,7 +17,7 @@ function App() {
         {console.log(JSON.stringify(sampleGraph))}
         <div className='relative-container'>
           <h1>Dikstra's Algorithm</h1>
-          {nodes.map(e => {
+          {nodes.forEach(e => {
             let change = generateNumber((height/3),50)
             if ((verticle - change) < 50) {
               verticle += change;
@@ -51,7 +51,6 @@ function App() {
           })
           return lines;
         })}
-        {console.log(height)}
         {domNodes}
       </div>
     </div>
