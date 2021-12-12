@@ -1,5 +1,5 @@
 const Line = ({left1, left2, right1, right2, width }) => {
-  let rgbVal = 70 + width * 8;
+  let rgbVal = width * 36;
   const elementStyle = {
     zIndex: -1,
     position: 'absolute',
