@@ -22,6 +22,7 @@ const GraphDisplay = () => {
   let domNodes = [];
   //I'll need to search the values of each node to make connecting lines, so keeping them in an object allows me to find the items using the node name
   let domNodesByKey = {};
+  const lines = [];
 
   return <>
 
@@ -54,8 +55,8 @@ const GraphDisplay = () => {
         })}
 
         {/* Now to add the connecting lines */}
-        {domNodes.map(e => {
-          const lines = []
+        {domNodes.forEach(e => {
+
           const connectedNodes = Object.keys(sampleGraph.nodes[e.props.name]);
 
           //One of the keys in each node object is an array keeping track of all nodes with incoming connections, I need to get rid of that since it's not something to connect
@@ -65,13 +66,17 @@ const GraphDisplay = () => {
           let startingY = parseInt(e.props.y) + 25;
           //Now I need to iterate through each of the connections in the node to see what nodes I need to draw a line to
           connectedNodes.forEach(i => {
+            const weight = sampleGraph.nodes[e.props.name][i]
             let endingX = parseInt(domNodesByKey[i].x) + 25;
             let endingY = parseInt(domNodesByKey[i].y) + 25;
-
-            lines.push(<Line startingX={startingX} startingY={startingY} endingX={endingX} endingY={endingY} weight={sampleGraph.nodes[e.props.name][i]} width={parseInt(sampleGraph.nodes[e.props.name][i]) ** 1.1} />)
+            if (lines.every(j => (j.key !== (`${startingX},${endingX}`)) && (j.key !== (`${endingX},${startingX}`))) && weight) {
+              lines.push(<Line key={`${startingX},${endingX}`} startingX={startingX} startingY={startingY} endingX={endingX} endingY={endingY} weight={weight} width={parseInt(weight) ** 1.1} />)
+              //`${endingX},${startingX}`
+            }
           })
-          return lines;
         })}
+        {console.log(lines)}
+        {lines}
         {domNodes}
   </>
 
