@@ -8,7 +8,7 @@ const Node = ({ name, x, y }) => {
 
   return <>
   <div className='node-circle' id={name}  style={divStyle}>
-    <svg width='100%' height='100%'>
+    <svg>
       <circle className='node' cx='25' cy='25' r='25' fill='gray' />
       <text x='20' y='29.5' fill='white'>{name}</text>
     </svg>
