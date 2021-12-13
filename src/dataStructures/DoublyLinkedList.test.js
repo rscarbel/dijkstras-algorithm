@@ -92,13 +92,13 @@ describe ('DoublyLinkedList contains', () => {
     let temp = new DoublyLinkedList();
     temp.addNode('A',2);
     temp.addNode('B',3);
-    expect(temp.constains('C')).toBe(false);
+    expect(temp.contains('C')).toBe(false);
   });
 
   test ('should return true if an item does exist', () => {
     let temp = new DoublyLinkedList();
     temp.addNode('A',2);
     temp.addNode('B',3);
-    expect(temp.constains('B')).toBe(true);
+    expect(temp.contains('B')).toBe(true);
   });
 });

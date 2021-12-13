@@ -43,7 +43,7 @@ class DoublyLinkedList {
     }
   }
 
-  constains (name) {
+  contains (name) {
     if (!this.head) {
       return false
     }
