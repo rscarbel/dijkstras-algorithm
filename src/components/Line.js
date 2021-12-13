@@ -3,10 +3,11 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
   const svgStyle = {
     position: 'absolute',
     top: 0,
-    left: 0
+    left: 0,
+    zIndex: -1
   }
   const lineStyle = {
-    zIndex: -1
+    zIndex: -2
   }
   const textStyle = {
     fontSize: '0.5em',
@@ -20,7 +21,7 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
   }
   return<>
     {width ? <svg style={svgStyle} width='100%' height='100%'>
-      <line style={lineStyle} fill="none" stroke={`rgb(${rgbVal},0,0)`} strokeWidth={width}
+      <line style={lineStyle} fill="none" stroke={`rgb(${rgbVal},0,0)`} strokeWidth={width} stroke-linecap='round'
       x1={startingX}
       y1={startingY}
       x2={endingX}
