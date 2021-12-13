@@ -58,6 +58,25 @@ class DoublyLinkedList {
     }
     return checkForItem(this.head,name)
   }
+
+  pop() {
+    if (!this.head) {
+      return null;
+    };
+    const removedNode = {}
+    removedNode.name = this.tail.name;
+    removedNode.weight = this.tail.weight
+    this.weight -= removedNode.weight;
+    this.length --;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+    };
+    return removedNode;
+  };
 };
 
 export default DoublyLinkedList;
