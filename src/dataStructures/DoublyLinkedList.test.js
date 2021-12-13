@@ -102,3 +102,44 @@ describe ('DoublyLinkedList contains', () => {
     expect(temp.contains('B')).toBe(true);
   });
 });
+
+describe ('DoublyLinkedList pop', () => {
+  test ('it should return null if the list is empty', () => {
+    let temp = new DoublyLinkedList();
+    expect(temp.pop()).toBe(null);
+  });
+
+  test ('It should delete the tail', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.pop();
+    expect(temp.tail).toBe(null);
+  });
+
+  test ('It should return the tail', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',4);
+    temp.addNode('C',2);
+    expect(temp.pop().name).toBe('C');
+  });
+
+  test ('It should decrement the length', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',4);
+    temp.addNode('C',2);
+    temp.pop()
+    expect(temp.length).toBe(2);
+  });
+
+  test ('It should lower the weight', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',4);
+    temp.addNode('C',2);
+    temp.pop()
+    expect(temp.weight).toBe(6);
+  });
+
+});
