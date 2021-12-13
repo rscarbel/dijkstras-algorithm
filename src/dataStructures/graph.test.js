@@ -71,8 +71,6 @@ describe ('graph methods & attributes', () => {
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
     graphTemp.deleteNode('A')
-    console.log(graphTemp)
-    console.log(graphTemp.nodes.B.incomingNodes)
     expect(graphTemp.nodes.A).toBe(undefined);
   });
 
@@ -83,24 +81,4 @@ describe ('graph methods & attributes', () => {
     graphTemp.deleteNode('A')
     expect(graphTemp.nodes.B.incomingNodes.length).toBe(1);
   });
-
 });
-/*
-new node
-{ nodes: { A: { A: 0, B: 1 }, B: { B: 0, A: 1 } } }
-graph.nodes {
-  A: [ {node: A, weight: 0}, {node: B, weight, 1} ]
-  B: [ {node: B, weight: 0}, {node: A, weight, 1}, {node: C, weight: 1} ]
-  C: [ {node: C, weight: 0}, {node: B, weight, 1} ]
-}
-
-  graph.nodes {
-    A: {A: 0, B: 1}
-    B: {B: 0, A: 1, C: 1}
-    C: {C: 0, B: 1}
-  }
-
-A: {A: 0, B: 1}
-
-graph.addNode(name, [])
-*/
