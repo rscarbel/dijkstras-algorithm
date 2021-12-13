@@ -27,21 +27,25 @@ describe ('DoublyLinkedList added head', () => {
 
   test ('head should not be null', () => {
     let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
     expect(temp.head).not.toBe(null);
   });
 
   test ('tail should not be null', () => {
     let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
     expect(temp.tail).not.toBe(null);
   });
 
   test ('It should have a length of 1', () => {
     let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
     expect(temp.length).toBe(1);
   });
 
   test ('It should have a weight of 2', () => {
     let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
     expect(temp.weight).toBe(2);
   });
 });
