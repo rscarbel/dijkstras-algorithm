@@ -8,7 +8,7 @@ function App() {
     <div className="App">
         {console.log(JSON.stringify(sampleGraph))}
         <div className='relative-container'>
-          <h1>Dikstra's Algorithm</h1>
+          <h1>Dijkstra's Algorithm</h1>
           <GraphDisplay />
       </div>
     </div>
