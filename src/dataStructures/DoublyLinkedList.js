@@ -28,6 +28,36 @@ class DoublyLinkedList {
     }
     this.head = newHead
   }
+
+  addNode (name,weight) {
+    if (!this.head) {
+      this.addToHead(name, weight)
+    } else {
+      const newNode = createNode(name,weight);
+      const prevTail = this.tail;
+      prevTail.next = newNode;
+      this.tail = newNode;
+      newNode.prev = prevTail;
+      this.weight += weight
+      this.length ++
+    }
+  }
+
+  constains (name) {
+    if (!this.head) {
+      return false
+    }
+    function checkForItem(node, name) {
+      if (node.name === name) {
+        return true
+      }
+      if (node.next) {
+        return checkForItem(node.next, name)
+      }
+      return false
+    }
+    return checkForItem(this.head,name)
+  }
 };
 
 export default DoublyLinkedList;

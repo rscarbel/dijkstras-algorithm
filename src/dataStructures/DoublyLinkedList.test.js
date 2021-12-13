@@ -50,24 +50,55 @@ describe ('DoublyLinkedList added head', () => {
   });
 });
 
-/*
-function createNode (name, weight) {
-  return {
-    name: name,
-    weight: weight,
-    next: null,
-    prev: null
-  }
-}
+describe ('DoublyLinkedList add node', () => {
 
-{
-  length: 3,
-  weight: 5,
-  head: NODE,
-  tail: NODE,
-  function displayList,
-  function removeTail,
-  function removeHead,
-  function addNode,
-}
-*/
+  test ('should create a head if none exists', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    expect(temp.head).not.toBe(null);
+  });
+
+  test ('node should be added at tail', () => {
+    let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
+    temp.addNode('B',2);
+    expect(temp.tail.name).toBe('B');
+  });
+
+  test ('old tail should now be prev in new tail', () => {
+    let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
+    temp.addNode('B',2);
+    expect(temp.tail.prev.name).toBe('A');
+  });
+
+  test ('length should be 2', () => {
+    let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
+    temp.addNode('B',2);
+    expect(temp.length).toBe(2);
+  });
+
+  test ('weight should be 4', () => {
+    let temp = new DoublyLinkedList();
+    temp.addToHead('A',2);
+    temp.addNode('B',2);
+    expect(temp.weight).toBe(4);
+  });
+});
+
+describe ('DoublyLinkedList contains', () => {
+  test ('should return false if an item does not exist', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',3);
+    expect(temp.constains('C')).toBe(false);
+  });
+
+  test ('should return true if an item does exist', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',3);
+    expect(temp.constains('B')).toBe(true);
+  });
+});
