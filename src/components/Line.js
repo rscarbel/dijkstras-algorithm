@@ -19,7 +19,7 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
     zIndex: 2
   }
   return<>
-    <svg style={svgStyle} width='100%' height='100%'>
+    {width ? <svg style={svgStyle} width='100%' height='100%'>
       <line style={lineStyle} fill="none" stroke={`rgb(${rgbVal},0,0)`} strokeWidth={width}
       x1={startingX}
       y1={startingY}
@@ -27,7 +27,7 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
       y2={endingY} />
 
 
-      </svg>
+      </svg> : ''}
       {width ? <svg style={circleStyle} width='100%' height='100%'>
       <circle style={circleStyle} cx={(endingX + startingX)/2} cy={(endingY + startingY)/2} r='0.4em' fill={`rgb(${rgbVal},0,0)`} stroke='#000000'/>
       <text style={textStyle} x={(endingX + startingX)/2 - 2.5} y={(endingY + startingY)/2 + 2.5} fill='#FFFFFF'>{weight ? weight : ''}</text>
