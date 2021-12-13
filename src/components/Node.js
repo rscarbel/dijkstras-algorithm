@@ -9,7 +9,7 @@ const Node = ({ name, x, y }) => {
   return <>
   <div className='node-circle' id={name}  style={divStyle}>
     <svg>
-      <circle className='node' cx='25' cy='25' r='25' fill='#282c34' opacity={0.9} />
+      <circle className='node' cx='25' cy='25' r='25' fill='#282c34' opacity={0.8} />
       <text x='20' y='29.5' fill='white'>{name}</text>
     </svg>
   </div>
