@@ -13,8 +13,8 @@
   position: absolute;
 }
 
-circle>svg:hover {
-  fill: #282c34;
+.node-circle>svg>circle:hover {
+  opacity: 1;
   cursor: pointer;
 }
 
