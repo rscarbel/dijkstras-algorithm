@@ -51,7 +51,7 @@ const GraphDisplay = () => {
       domNodesByKey[e].x = horizontal;
       domNodesByKey[e].y = vertical;
 
-        })};
+        })}
 
         {/* Now to add the connecting lines */}
         {domNodes.map(e => {
