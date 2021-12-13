@@ -75,7 +75,6 @@ const GraphDisplay = () => {
             }
           })
         })}
-        {console.log(lines)}
         {lines}
         {domNodes}
   </>
