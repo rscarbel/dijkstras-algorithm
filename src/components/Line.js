@@ -21,7 +21,7 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
   }
   return<>
     {width ? <svg style={svgStyle} width='100%' height='100%'>
-      <line style={lineStyle} fill="none" stroke={`rgb(${rgbVal},0,0)`} strokeWidth={width} stroke-linecap='round'
+      <line style={lineStyle} fill="none" stroke={`rgb(${rgbVal},0,0)`} strokeWidth={width} strokeLinecap='round'
       x1={startingX}
       y1={startingY}
       x2={endingX}
