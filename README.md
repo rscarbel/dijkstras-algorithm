@@ -6,9 +6,9 @@ The paths are weighted - meaning that some routes are harder to travel on than o
 
 I'm working on it right now, but it is [deployed here](https://dijkstras-algorithm.netlify.app/)
 
-![dijkstra_screenshot_2](https://user-images.githubusercontent.com/40727301/145822930-8a42a53c-4c69-4523-a9ae-dfdc05514256.png)
+![dijkstras_algorithm_screenshot_2](https://user-images.githubusercontent.com/40727301/146002741-98d54ad6-b69d-44eb-99ae-c03c5cb7b05f.png)
 
-![dijkstra_screenshot](https://user-images.githubusercontent.com/40727301/145822948-64e833ef-20ac-410b-bc2f-62c9f125b766.png)
+![dijkstras_algorithm_screenshot](https://user-images.githubusercontent.com/40727301/146002770-12304e93-1c00-4e33-a14e-9dddae5924aa.png)
 
 ### Technologies Used
  * React
@@ -33,6 +33,9 @@ I'm working on it right now, but it is [deployed here](https://dijkstras-algorit
 ## Contributions
 
 Please feel free to fork and contribute!
-I have had people watch me build this on discord, which I really enjoy. It makes me feel like I'm actually competent when I have an audence haha. But I would appreciate it even more if someone forked the code and helped me build it. As much as I enjoy the challenge of building it myself - it can sometimes be just as much of a challenge to understand someone else's implementation.
+I have had people watch me build this on discord, which I really enjoy.
+It makes me feel like I'm actually competent when I have an audence haha. But I would appreciate it even more if someone forked the code and helped me build it.
+As much as I enjoy the challenge of building it myself - it can sometimes be just as much of a challenge to understand someone else's implementation.
 I could also use another set of eyes to prevent me from writing messy code.
-If you'd like to contribute, but it seems complex and confusing, let me know and whenever I'm working on it, I can catch you up on what's going on. If you're here on github reading this - you're probably in the Discord group. I likely don't have Discord up on my screen, but you can find me in the general voice chat.
+If you'd like to contribute, but it seems complex and confusing, let me know and whenever I'm working on it, I can catch you up on what's going on.
+If you're here on github reading this - you're probably in the Discord group. I likely don't have Discord up on my screen, but you can find me in the general voice chat.
