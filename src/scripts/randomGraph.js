@@ -6,7 +6,7 @@ const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) 
 
 const chooseNodeNames = () => {
   let nodeNames = []
-  let choice = generateNumber(nodeNameSeeds.length,0);
+  let choice = generateNumber(nodeNameSeeds.length-1,0);
   nodeNames = [...nodeNameSeeds[choice]]
   return nodeNames;
 };
