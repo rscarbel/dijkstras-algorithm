@@ -6,7 +6,7 @@ const GraphDisplay = () => {
 
   let nodes = Object.keys(randomGraph.nodes);
 
-  const generateNumber = (max,min) => Math.floor((Math.random() * max) + min);
+  const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
 
   //I subtracted 50 to account for the title text
   let height = window.innerHeight - 50;
@@ -34,7 +34,7 @@ const GraphDisplay = () => {
       else if ((yCoordinate + verticalChange) > (height - 50)){
         yCoordinate -= verticalChange;
       } else {
-        if (generateNumber(2,0)) {
+        if (generateNumber(1,0)) {
           yCoordinate += verticalChange;
         } else {
           yCoordinate -= verticalChange;
