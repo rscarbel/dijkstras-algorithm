@@ -8,10 +8,10 @@ const GraphDisplay = () => {
 
   const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
 
-  //I subtracted 50 to account for the title text
-  let height = window.innerHeight - 50;
+  //I subtracted 100 to account for the title text
+  let height = window.innerHeight - 100;
 
-  let horizontalSpacing = (window.innerWidth / nodes.length) - (50 / nodes.length)
+  let horizontalSpacing = (window.innerWidth / nodes.length) - (100 / nodes.length)
 
   let xCoordinate = 0;
 
@@ -24,14 +24,14 @@ const GraphDisplay = () => {
   return <>
     {console.log(randomGraph)}
     {nodes.forEach(e => {
-      //verticalChange must be at least 50, because that is the height of the nodes
-      let verticalChange = generateNumber((height/3),50)
+      //verticalChange must be at least 100, because that is the height of the nodes
+      let verticalChange = generateNumber((height / 2.5),100)
       //keep nodes from being created above the top of the page
-      if ((yCoordinate - verticalChange) < 50) {
+      if ((yCoordinate - verticalChange) < 100) {
         yCoordinate += verticalChange;
       }
       //keep nodes from being created below the bottom of the page
-      else if ((yCoordinate + verticalChange) > (height - 50)){
+      else if ((yCoordinate + verticalChange) > (height - 100)){
         yCoordinate -= verticalChange;
       } else {
         if (generateNumber(1,0)) {
@@ -41,7 +41,7 @@ const GraphDisplay = () => {
         }
       }
 
-      xCoordinate += generateNumber(horizontalSpacing,26);
+      xCoordinate += generateNumber(horizontalSpacing,56);
 
       domNodes.push(<Node key={e} name={e} x={xCoordinate} y={yCoordinate} />)
 
@@ -58,17 +58,17 @@ const GraphDisplay = () => {
 
           //incomingNodes isn't a connection, so I need to remove it
           connectedNodes.splice(connectedNodes.indexOf('incomingNodes'),1);
-          //I added 25 to the starting x & y values to place it in the center of the circle
-          let startingX = parseInt(e.props.x) + 25;
-          let startingY = parseInt(e.props.y) + 25;
+          //I added 50 to the starting x & y values to place it in the center of the circle
+          let startingX = parseInt(e.props.x) + 50;
+          let startingY = parseInt(e.props.y) + 50;
 
           connectedNodes.forEach(i => {
 
             const weight = randomGraph.nodes[e.props.name][i];
 
-            let endingX = parseInt(domNodesByKey[i].x) + 25;
+            let endingX = parseInt(domNodesByKey[i].x) + 50;
 
-            let endingY = parseInt(domNodesByKey[i].y) + 25;
+            let endingY = parseInt(domNodesByKey[i].y) + 50;
 
             //Check if the key is aready there
             //then check to see if a line has already been drawn in the reverse direction
