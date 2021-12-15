@@ -1,3 +1,9 @@
+/**
+ * @description Graph Data Structure
+ * @param {string} node name of initial node
+ *
+ * @returns {object} graph
+ */
 class Graph {
   constructor (node){
     this.nodes = {};
@@ -12,7 +18,13 @@ class Graph {
     this.nodes[node].incomingNodes = [node]
   }
 
-  //false can be passed in as a third argument to only create the connection one-way
+  /**
+   * @description adds a connection to the node passed in
+   * @param {string} node name of source node
+   * @param {string} connection name of endpoint node
+   * @param {number} weight weight of connection
+   * @param {boolean} [bidirectional=true] (optional) whether the connection go both ways
+   */
   addConnection(node, connection, weight, bidirectional = true) {
     // add neighbor & its weight to the node
     this.nodes[node][connection] = weight;
@@ -25,7 +37,12 @@ class Graph {
     };
   };
 
-  //false can be passed in as a third argument to only delete the connection one-way
+  /**
+   * @description deletes a connection from the node passed in
+   * @param {string} node name of source node
+   * @param {string} connection name of endpoint node
+   * @param {boolean} [bidirectional=true] (optional) whether the deletion is for both directions of the connection
+   */
   deleteConnection(node, connection, bidirectional=true) {
     //delete node from connections
     delete this.nodes[node][connection]
@@ -37,6 +54,10 @@ class Graph {
     }
   };
 
+  /**
+   * @description deletes node and all connections to and from it
+   * @param {string} node name of source node
+   */
   deleteNode(node) {
     //loop through incoming nodes to remove their connection
     for (let i = this.nodes[node].incomingNodes.length - 1;i >= 0; i--) {
