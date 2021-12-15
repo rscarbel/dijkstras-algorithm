@@ -1,7 +1,7 @@
 import Graph from "../dataStructures/graph";
 import generateWeight from "./generateWeight";
 
-const generateNumber = (max,min) => Math.floor((Math.random() * max) + min);
+const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
 
 /**
  *
@@ -16,14 +16,14 @@ const addRandomConnections = (graph, sourceArray) => {
 
   //80% chance of having connection to index two to the left
   for(let i = 2; i < sourceArray.length; i++) {
-    if (generateNumber(6,0)) {
+    if (generateNumber(5,0)) {
       graph.addConnection(sourceArray[i],sourceArray[i-2],generateWeight())
     }
   }
 
   //20% chance of having connection to index three to the left
   for(let i = 3; i < sourceArray.length; i++) {
-    if (!generateNumber(6,0)) {
+    if (!generateNumber(5,0)) {
       graph.addConnection(sourceArray[i],sourceArray[i-3],generateWeight())
     }
   }

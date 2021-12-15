@@ -1,4 +1,4 @@
-const generateNumber = (max,min) => Math.ceil((Math.random() * max) + min);
+const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
 
 /**
  * @description Function to generate weight of lines
