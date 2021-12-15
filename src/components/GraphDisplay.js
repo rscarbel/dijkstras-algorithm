@@ -6,51 +6,48 @@ const GraphDisplay = () => {
 
   let nodes = Object.keys(sampleGraph.nodes);
 
-  //rng helper function for randomizing graph placement
   const generateNumber = (max,min) => Math.floor((Math.random() * max) + min);
 
-  //subtract 50 or so from the height to account for the title text
+  //I subtracted 50 to account for the title text
   let height = window.innerHeight - 50;
 
-  //Allow the largest possible spacing to be limited to screen width
   let horizontalSpacing = (window.innerWidth / nodes.length) - (50 / nodes.length)
-  //Nodes should start being placed from left to right
-  let horizontal = 0;
-  //the starting vertical alignment will be calculated from a third of the way down the page.
-  let vertical = height/3;
-  //Keep the nodes in an array to display on the dom
+
+  let xCoordinate = 0;
+
+  let yCoordinate = height/3;
+
   let domNodes = [];
-  //I'll need to search the values of each node to make connecting lines, so keeping them in an object allows me to find the items using the node name
   let domNodesByKey = {};
   const lines = [];
 
   return <>
 
     {nodes.forEach(e => {
-      //verticalChange  must be at least 50, because that is the height of the nodes themselves
+      //verticalChange must be at least 50, because that is the height of the nodes
       let verticalChange = generateNumber((height/3),50)
       //keep nodes from being created above the top of the page
-      if ((vertical - verticalChange) < 50) {
-        vertical += verticalChange;
+      if ((yCoordinate - verticalChange) < 50) {
+        yCoordinate += verticalChange;
       }
       //keep nodes from being created below the bottom of the page
-      else if ((vertical + verticalChange) > (height - 50)){
-        vertical -= verticalChange;
+      else if ((yCoordinate + verticalChange) > (height - 50)){
+        yCoordinate -= verticalChange;
       } else {
         if (generateNumber(2,0)) {
-          vertical += verticalChange;
+          yCoordinate += verticalChange;
         } else {
-          vertical -= verticalChange;
+          yCoordinate -= verticalChange;
         }
       }
 
-      horizontal += generateNumber(horizontalSpacing,26);
+      xCoordinate += generateNumber(horizontalSpacing,26);
 
-      domNodes.push(<Node key={e} name={e} x={horizontal} y={vertical} />)
+      domNodes.push(<Node key={e} name={e} x={xCoordinate} y={yCoordinate} />)
 
       domNodesByKey[e] = {}
-      domNodesByKey[e].x = horizontal;
-      domNodesByKey[e].y = vertical;
+      domNodesByKey[e].x = xCoordinate;
+      domNodesByKey[e].y = yCoordinate;
 
         })}
 
@@ -59,19 +56,33 @@ const GraphDisplay = () => {
 
           const connectedNodes = Object.keys(sampleGraph.nodes[e.props.name]);
 
-          //One of the keys in each node object is an array keeping track of all nodes with incoming connections, I need to get rid of that since it's not something to connect
+          //incomingNodes isn't a connection, so I need to remove it
           connectedNodes.splice(connectedNodes.indexOf('incomingNodes'),1);
-          //Add 25 to the starting x & y values to place it in the center of the circle
+          //I added 25 to the starting x & y values to place it in the center of the circle
           let startingX = parseInt(e.props.x) + 25;
           let startingY = parseInt(e.props.y) + 25;
-          //Now I need to iterate through each of the connections in the node to see what nodes I need to draw a line to
+
           connectedNodes.forEach(i => {
-            const weight = sampleGraph.nodes[e.props.name][i]
+
+            const weight = sampleGraph.nodes[e.props.name][i];
+
             let endingX = parseInt(domNodesByKey[i].x) + 25;
+
             let endingY = parseInt(domNodesByKey[i].y) + 25;
+
+            //Check if the key is aready there
+            //then check to see if a line has already been drawn in the reverse direction
+            //finally, make sure the connection doesn't have a weight of 0
             if (lines.every(j => (j.key !== (`${startingX},${endingX}`)) && (j.key !== (`${endingX},${startingX}`))) && weight) {
-              lines.push(<Line key={`${startingX},${endingX}`} startingX={startingX} startingY={startingY} endingX={endingX} endingY={endingY} weight={weight} width={parseInt(weight) ** 1.1} />)
-              //`${endingX},${startingX}`
+
+              lines.push(<Line
+                key={`${startingX},${endingX}`}
+                startingX={startingX}
+                startingY={startingY}
+                endingX={endingX}
+                endingY={endingY}
+                weight={weight}
+                width={parseInt(weight) ** 1.1} />)
             }
           })
         })}
