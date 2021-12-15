@@ -3,14 +3,13 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
   const svgStyle = {
     position: 'absolute',
     top: 0,
-    left: 0,
-    zIndex: -1
+    left: 0
   }
   const lineStyle = {
-    zIndex: -2
+    zIndex: -1
   }
   const textStyle = {
-    fontSize: '0.5em',
+    fontSize: '18px',
     zIndex: 3
   }
   const circleStyle = {
@@ -20,29 +19,37 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
     zIndex: 2
   }
   return<>
-    {width ? <svg style={svgStyle} width='100%' height='100%'>
-      <line style={lineStyle} fill="none" stroke={`rgb(${rgbVal},0,0)`} strokeWidth={width} strokeLinecap='round'
+    <svg
+    style={svgStyle}
+    width='100%'
+    height='100%'>
+
+      <line
+      style={lineStyle}
+      fill="none"
+      stroke={`rgb(${rgbVal},0,0)`}
+      strokeWidth={width}
       x1={startingX}
       y1={startingY}
       x2={endingX}
       y2={endingY} />
 
 
-      </svg> : ''}
+      </svg>
       {width ? <svg style={circleStyle} width='100%' height='100%'>
       <circle
       style={circleStyle}
       cx={(endingX + startingX)/2}
       cy={(endingY + startingY)/2}
-      r='0.4em' fill={`rgb(${rgbVal},0,0)`}
+      r='12px'
+      fill={`rgb(${rgbVal},0,0)`}
       stroke='#000000'/>
 
       <text
       style={textStyle}
-      x={(endingX + startingX)/2 - 2.5}
-      y={(endingY + startingY)/2 + 2.5}
-      fill='#FFFFFF'>
-      {weight ? weight : ''}</text>
+      x={(endingX + startingX)/2 - 5.5}
+      y={(endingY + startingY)/2 + 5.5}
+      fill='#FFFFFF'>{weight ? weight : ''}</text>
       </svg> : ''}
     </>
 };
