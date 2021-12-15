@@ -30,8 +30,19 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
 
       </svg> : ''}
       {width ? <svg style={circleStyle} width='100%' height='100%'>
-      <circle style={circleStyle} cx={(endingX + startingX)/2} cy={(endingY + startingY)/2} r='0.4em' fill={`rgb(${rgbVal},0,0)`} stroke='#000000'/>
-      <text style={textStyle} x={(endingX + startingX)/2 - 2.5} y={(endingY + startingY)/2 + 2.5} fill='#FFFFFF'>{weight ? weight : ''}</text>
+      <circle
+      style={circleStyle}
+      cx={(endingX + startingX)/2}
+      cy={(endingY + startingY)/2}
+      r='0.4em' fill={`rgb(${rgbVal},0,0)`}
+      stroke='#000000'/>
+
+      <text
+      style={textStyle}
+      x={(endingX + startingX)/2 - 2.5}
+      y={(endingY + startingY)/2 + 2.5}
+      fill='#FFFFFF'>
+      {weight ? weight : ''}</text>
       </svg> : ''}
     </>
 };
