@@ -7,13 +7,17 @@ const cities = ['Aberdeen', 'Albany', 'Albuquerque', 'Alexandria', 'Anchorage', 
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
+const middleEarthCities = ['Misty Mountains', 'Mount Doom', 'Gondor', 'Minas Tirith', 'Helm\'s Deep', 'Isengard', 'Lothlórien', 'Mirkwood', 'Rivendell', 'Shire', 'Rohan', ' White Mountains', 'Moria', 'Dead Marshes', 'Black Gate', 'Prancing Pony', 'Weathertop', 'Bree', 'Fangorn', 'Cirith Ungol', 'Erebor', 'Gladden Fields', 'Grey Havens'  ]
+
 const chooseNodeNames = () => {
   let nodeNames = []
-  let choice = generateNumber(1,0);
-  if (choice === 2) {
+  let choice = generateNumber(2,0);
+  if (choice === 1) {
     nodeNames = [...cities];
-  } else if (choice === 1) {
+  } else if (choice === 2) {
     nodeNames = [...letters];
+  } else if (choice === 3) {
+    nodeNames = [...middleEarthCities];
   }
   return nodeNames;
 };
