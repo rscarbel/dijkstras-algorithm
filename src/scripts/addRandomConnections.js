@@ -1,4 +1,3 @@
-import Graph from "../dataStructures/graph";
 import generateWeight from "./generateWeight";
 
 const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
