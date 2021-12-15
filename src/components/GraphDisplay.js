@@ -1,10 +1,10 @@
 import Node from './Node';
-import sampleGraph from './sampleGraph';
+import randomGraph from '../scripts/randomGraph';
 import Line from './Line';
 
 const GraphDisplay = () => {
 
-  let nodes = Object.keys(sampleGraph.nodes);
+  let nodes = Object.keys(randomGraph.nodes);
 
   const generateNumber = (max,min) => Math.floor((Math.random() * max) + min);
 
@@ -22,7 +22,7 @@ const GraphDisplay = () => {
   const lines = [];
 
   return <>
-
+    {console.log(randomGraph)}
     {nodes.forEach(e => {
       //verticalChange must be at least 50, because that is the height of the nodes
       let verticalChange = generateNumber((height/3),50)
@@ -54,7 +54,7 @@ const GraphDisplay = () => {
         {/* Now to add the connecting lines */}
         {domNodes.forEach(e => {
 
-          const connectedNodes = Object.keys(sampleGraph.nodes[e.props.name]);
+          const connectedNodes = Object.keys(randomGraph.nodes[e.props.name]);
 
           //incomingNodes isn't a connection, so I need to remove it
           connectedNodes.splice(connectedNodes.indexOf('incomingNodes'),1);
@@ -64,7 +64,7 @@ const GraphDisplay = () => {
 
           connectedNodes.forEach(i => {
 
-            const weight = sampleGraph.nodes[e.props.name][i];
+            const weight = randomGraph.nodes[e.props.name][i];
 
             let endingX = parseInt(domNodesByKey[i].x) + 25;
 
