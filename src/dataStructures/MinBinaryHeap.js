@@ -12,7 +12,7 @@ class MinBinaryHeap {
       let parentIndex = Math.floor((index - 1)/2);
       let parentValue = this.values[parentIndex];
 
-      if (value <= parentValue) {
+      if (value >= parentValue) {
         break
       }
 
