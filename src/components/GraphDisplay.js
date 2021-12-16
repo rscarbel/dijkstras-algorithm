@@ -11,7 +11,7 @@ const GraphDisplay = () => {
   //I subtracted 100 to account for the title text
   let height = window.innerHeight - 100;
 
-  let horizontalSpacing = (window.innerWidth / nodes.length) - (100 / nodes.length)
+  let horizontalSpacing = (window.innerWidth / nodes.length) - (200 / nodes.length)
 
   let xCoordinate = 0;
 
