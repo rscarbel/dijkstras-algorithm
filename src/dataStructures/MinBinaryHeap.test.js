@@ -24,9 +24,6 @@ describe ('Binary Heap insertion', () => {
     temp.insert(4);
     temp.insert(2);
     temp.insert(6);
-    console.log('//////');
-    console.log(temp.values);
-    console.log('//////');
     expect(temp.values[0]).toBe(1);
   });
 
@@ -53,7 +50,6 @@ describe ('Binary Heap insertion', () => {
     temp.insert(7);
     temp.insert(8);
     temp.insert(9);
-    console.log(temp.values)
     expect(temp.values[1]).toBeLessThan(4);
     expect(temp.values[0]).toBeLessThan(3);
     expect(temp.values[2]).toBeLessThan(4);
