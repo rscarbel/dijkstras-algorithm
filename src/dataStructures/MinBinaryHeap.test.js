@@ -106,4 +106,21 @@ describe ('Binary Heap extract', () => {
     expect(beforeExtract).not.toBe(afterExtract);
   });
 
+  test ('it should resort the values', () => {
+    let temp = new MinBinaryHeap();
+    temp.insert(5);
+    temp.insert(3);
+    temp.insert(6);
+    temp.insert(1);
+    temp.insert(4);
+    temp.insert(2);
+    temp.insert(7);
+    temp.insert(8);
+    temp.insert(9);
+    let beforeExtract = temp.values[0]
+    temp.extract()
+    let afterExtract = temp.values[0]
+    expect(beforeExtract).not.toBe(afterExtract);
+  });
+
 });
