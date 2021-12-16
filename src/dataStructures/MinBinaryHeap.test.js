@@ -57,3 +57,53 @@ describe ('Binary Heap insertion', () => {
   });
 
 });
+
+describe ('Binary Heap extract', () => {
+
+  test ('it should return the smallest value', () => {
+    let temp = new MinBinaryHeap();
+    temp.insert(5);
+    temp.insert(3);
+    temp.insert(6);
+    temp.insert(1);
+    temp.insert(4);
+    temp.insert(2);
+    temp.insert(7);
+    temp.insert(8);
+    temp.insert(9);
+    expect(temp.extract()).toBe(1);
+  });
+
+  test ('it remove an element from the values', () => {
+    let temp = new MinBinaryHeap();
+    temp.insert(5);
+    temp.insert(3);
+    temp.insert(6);
+    temp.insert(1);
+    temp.insert(4);
+    temp.insert(2);
+    temp.insert(7);
+    temp.insert(8);
+    temp.insert(9);
+    temp.extract()
+    expect(temp.values.length).toBe(8);
+  });
+
+  test ('it should remove the first index', () => {
+    let temp = new MinBinaryHeap();
+    temp.insert(5);
+    temp.insert(3);
+    temp.insert(6);
+    temp.insert(1);
+    temp.insert(4);
+    temp.insert(2);
+    temp.insert(7);
+    temp.insert(8);
+    temp.insert(9);
+    let beforeExtract = temp.values[0]
+    temp.extract()
+    let afterExtract = temp.values[0]
+    expect(beforeExtract).not.toBe(afterExtract);
+  });
+
+});

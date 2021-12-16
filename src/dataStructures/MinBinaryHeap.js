@@ -1,6 +1,7 @@
 class MinBinaryHeap {
   constructor() {
     this.values = [];
+    this.size = 0;
   };
 
   insert(value) {
@@ -50,6 +51,10 @@ class MinBinaryHeap {
 
       index = parentIndex;
     }
+  }
+
+  extract() {
+    return
   }
 };
 
