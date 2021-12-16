@@ -22,7 +22,6 @@ const GraphDisplay = () => {
   const lines = [];
 
   return <>
-    {console.log(randomGraph)}
     {nodes.forEach(e => {
 
       let distanceToWindowEdge = yCoordinate < (height / 2)
@@ -62,8 +61,7 @@ const GraphDisplay = () => {
 
         {/* Now to add the connecting lines */}
         {domNodes.forEach(e => {
-
-          const connectedNodes = Object.keys(randomGraph.nodes[e.props.name]);
+          const connectedNodes = Object.keys(randomGraph.nodes[e.props.name].outgoingConnections);
 
           //incomingNodes isn't a connection, so I need to remove it
           connectedNodes.splice(connectedNodes.indexOf('incomingNodes'),1);
@@ -73,7 +71,7 @@ const GraphDisplay = () => {
 
           connectedNodes.forEach(i => {
 
-            const weight = randomGraph.nodes[e.props.name][i];
+            const weight = randomGraph.nodes[e.props.name].outgoingConnections[i];
 
             let endingX = parseInt(domNodesByKey[i].x) + 50;
 

@@ -20,14 +20,14 @@ describe ('graph methods & attributes', () => {
     expect(Object.keys(graphTemp.nodes).length).toBe(1)
   });
 
-  test ('the initial node in the graph should have connection to itslef with a weight of 0', () => {
+  test ('the initial node in the graph should have connection to itself with a weight of 0', () => {
     const graphTemp = new Graph('A')
-    expect(graphTemp.nodes.A.incomingNodes[0]).toBe('A')
+    expect(graphTemp.nodes.A.incomingConnections[0]).toBe('A')
   });
 
   test ('the node should have an incoming node of itself', () => {
     const graphTemp = new Graph('A')
-    expect(graphTemp.nodes.A.A).toBe(0)
+    expect(graphTemp.nodes.A.outgoingConnections.A).toBe(0)
   });
 
   test('the addNode method should add a node to the graph nodes object', () => {
@@ -40,14 +40,14 @@ describe ('graph methods & attributes', () => {
     const graphTemp = new Graph('A');
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
-    expect(graphTemp.nodes.B.A).toBe(1);
+    expect(graphTemp.nodes.B.outgoingConnections.A).toBe(1);
   });
 
-  test('the addConnection should add a the connected node to the incomingNodes array', () => {
+  test('the addConnection should add a the connected node to the incomingConnections array', () => {
     const graphTemp = new Graph('A');
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
-    expect(graphTemp.nodes.B.incomingNodes.indexOf('A')).not.toBe(-1)
+    expect(graphTemp.nodes.B.incomingConnections.indexOf('A')).not.toBe(-1)
   });
 
   test('the deleteConnection should remove the connection between two nodes passed in', () => {
@@ -58,12 +58,12 @@ describe ('graph methods & attributes', () => {
     expect(graphTemp.nodes.B.A).toBe(undefined);
   });
 
-  test('the deleteConnection should remove the node from incomingNodes', () => {
+  test('the deleteConnection should remove the node from incomingConnections', () => {
     const graphTemp = new Graph('A');
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
     graphTemp.deleteConnection('A','B')
-    expect(graphTemp.nodes.B.incomingNodes.indexOf('A')).toBe(-1);
+    expect(graphTemp.nodes.B.incomingConnections.indexOf('A')).toBe(-1);
   });
 
   test('the deleteNode method should delete the node', () => {
@@ -79,6 +79,6 @@ describe ('graph methods & attributes', () => {
     graphTemp.addNode('B');
     graphTemp.addConnection('B','A',1)
     graphTemp.deleteNode('A')
-    expect(graphTemp.nodes.B.incomingNodes.length).toBe(1);
+    expect(graphTemp.nodes.B.incomingConnections.length).toBe(1);
   });
 });

@@ -1,7 +1,8 @@
+import generateWeight from "./generateWeight";
 import Graph from '../dataStructures/graph';
-import addRandomConnections from './addRandomConnections';
+// import addRandomConnections from './addRandomConnections';
 
-const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
+let generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
 
 const cities = ['Aberdeen', 'Albany', 'Albuquerque', 'Alexandria', 'Anchorage', 'Appleton', 'Arlington', 'Asheville', 'Athens', 'Atlanta', 'Austin', 'Baltimore', 'Beaumont', 'Bel Air', 'Berkeley', 'Birmingham', 'Boston', 'Boulder', 'Buffalo', 'Burlington', 'Cambridge', 'Cary', 'Charleston', 'Charlotte', 'Chattanooga', 'Chicago', 'Cincinnati', 'Cleveland', 'Columbia', 'Concord', 'Dallas', 'Davenport', 'Dayton', 'Denver', 'Detroit', 'Durham', 'El Paso', 'Flint', 'Gainesville', 'Gastonia', 'Greensboro', 'Greenville', 'Hampton', 'Harrisburg', 'Henderson', 'Hickory', 'High Point', 'Hollywood', 'Honolulu', 'Houston', 'Indianapolis', 'Irving', 'Jacksonville', 'Jersey City', 'Kailua', 'Kansas City', 'Knoxville', 'Lancaster', 'Las Vegas', 'Lexington', 'Lincoln', 'Long Beach', 'Los Angeles', 'Louisville', 'Melbourne', 'Memphis', 'Miami', 'Milwaukee', 'Minneapolis', 'Monroe', 'Myrtle Beach', 'Nashville', 'New Orleans', 'New York', 'Newark', 'Norfolk', 'Oakland', 'Oklahoma City', 'Omaha', 'Ontario', 'Orlando', 'Pasadena', 'Philadelphia', 'Phoenix', 'Pittsburgh', 'Portland', 'Raleigh', 'Richmond', 'Roanoke', 'Rochester', 'Sacramento', 'San Antonio', 'San Diego', 'San Francisco', 'San Jose', 'Savannah', 'Scranton', 'Seattle', 'Spartanburg', 'Springfield', 'St. Louis', 'Syracuse', 'Tacoma', 'Tallahassee', 'Tampa', 'Topeka', 'Trenton', 'Tucson', 'Tulsa', 'Vancouver', 'Waco', 'Washington', 'Wichita', 'Wilmington', 'Winston', 'Yonkers' ];
 
@@ -66,6 +67,51 @@ const randomGraph = new Graph(nodeNames[0]);
 for (let i = 1; i < nodeNames.length; i++){
   randomGraph.addNode(nodeNames[i])
 }
+
+
+generateNumber = (max,min) => Math.floor((Math.random() * (max - min + 1)) + min);
+
+/**
+ *
+ * @param {Graph} graph graph to call addConnection method
+ * @param {Array} sourceArray node names in the graph
+ */
+const addRandomConnections = (graph, sourceArray) => {
+  //80% chance of having connection to adjecent node
+  for (let i = 0; i < sourceArray.length - 1; i++) {
+    if (generateNumber(5,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i+1],generateWeight())
+    }
+  }
+
+  //80% chance of having connection to index two to the left
+  for(let i = 2; i < sourceArray.length; i++) {
+    if (generateNumber(5,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i-2],generateWeight())
+    }
+  }
+
+  //20% chance of having connection to index three to the left
+  for(let i = 3; i < sourceArray.length; i++) {
+    if (!generateNumber(5,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i-3],generateWeight())
+    }
+  }
+
+  //10% chance of having connection to index four to the left
+  for(let i = 4; i < sourceArray.length; i++) {
+    if (!generateNumber(10,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i-4],generateWeight())
+    }
+  }
+
+  //1% chance of having connection to index five to the left
+  for(let i = 5; i < sourceArray.length; i++) {
+    if (!generateNumber(100,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i-5],generateWeight())
+    }
+  }
+};
 
 addRandomConnections(randomGraph,nodeNames)
 
