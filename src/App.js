@@ -1,12 +1,13 @@
 import GraphDisplay from './components/GraphDisplay';
 import './App.css';
+import TopBar from './components/TopBar';
 
 function App() {
 
   return (
     <div className="App">
         <div className='relative-container'>
-          <h1>Dijkstra's Algorithm</h1>
+          <TopBar />
           <GraphDisplay />
       </div>
     </div>
