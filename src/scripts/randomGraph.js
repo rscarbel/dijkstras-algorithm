@@ -59,7 +59,7 @@ const selectRandomIndices = (max,min,array) => {
 
 shuffleArray(graphLetters);
 
-const nodeNames = selectRandomIndices(18,12,graphLetters);
+const nodeNames = selectRandomIndices(22,10,graphLetters);
 
 const randomGraph = new Graph(nodeNames[0]);
 
