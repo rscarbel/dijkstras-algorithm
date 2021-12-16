@@ -1,6 +1,6 @@
 import generateWeight from "./generateWeight";
 
-const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
+const generateNumber = (max,min) => Math.floor((Math.random() * (max - min + 1)) + min);
 
 /**
  *
@@ -8,9 +8,11 @@ const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) 
  * @param {Array} sourceArray node names in the graph
  */
 const addRandomConnections = (graph, sourceArray) => {
-  //add at least one connection for each node
+  //80% chance of having connection to adjecent node
   for (let i = 0; i < sourceArray.length - 1; i++) {
-    graph.addConnection(sourceArray[i],sourceArray[i+1],generateWeight())
+    if (generateNumber(5,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i+1],generateWeight())
+    }
   }
 
   //80% chance of having connection to index two to the left
@@ -24,6 +26,20 @@ const addRandomConnections = (graph, sourceArray) => {
   for(let i = 3; i < sourceArray.length; i++) {
     if (!generateNumber(5,0)) {
       graph.addConnection(sourceArray[i],sourceArray[i-3],generateWeight())
+    }
+  }
+
+  //10% chance of having connection to index four to the left
+  for(let i = 4; i < sourceArray.length; i++) {
+    if (!generateNumber(10,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i-4],generateWeight())
+    }
+  }
+
+  //1% chance of having connection to index five to the left
+  for(let i = 5; i < sourceArray.length; i++) {
+    if (!generateNumber(100,0)) {
+      graph.addConnection(sourceArray[i],sourceArray[i-5],generateWeight())
     }
   }
 };
