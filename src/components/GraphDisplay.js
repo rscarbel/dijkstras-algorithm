@@ -15,7 +15,7 @@ const GraphDisplay = () => {
 
   let xCoordinate = 0;
 
-  let yCoordinate = height/3;
+  let yCoordinate = 0;
 
   let domNodes = [];
   let domNodesByKey = {};
@@ -24,8 +24,17 @@ const GraphDisplay = () => {
   return <>
     {console.log(randomGraph)}
     {nodes.forEach(e => {
-      //verticalChange must be at least 100, because that is the height of the nodes
-      let verticalChange = generateNumber((height / 2.5),100)
+
+      let distanceToWindowEdge = yCoordinate < (height / 2)
+      ? height - yCoordinate - 50
+      : yCoordinate - 150
+
+      //Anything less than this just isn't interesting, and anything more starts to be too predictable
+      let minimumVerticalChange = height / 3.2 > 100
+      ? height / 5
+      : 100
+
+      let verticalChange = generateNumber(distanceToWindowEdge, minimumVerticalChange)
       //keep nodes from being created above the top of the page
       if ((yCoordinate - verticalChange) < 100) {
         yCoordinate += verticalChange;
@@ -41,7 +50,7 @@ const GraphDisplay = () => {
         }
       }
 
-      xCoordinate += generateNumber(horizontalSpacing,56);
+      xCoordinate += generateNumber(horizontalSpacing,100);
 
       domNodes.push(<Node key={e} name={e} x={xCoordinate} y={yCoordinate} />)
 
