@@ -4,6 +4,11 @@
  *
  * @returns {object} graph
  */
+/**
+ *
+ * @param {String} node name of initial node
+ * @returns {Object} {nodes: {node: {outgoingConnections: {}, incomingConnections []}}}
+ */
 class Graph {
   constructor (node){
     this.nodes = {};
@@ -13,6 +18,9 @@ class Graph {
     this.nodes[node].incomingConnections = [node];
   }
 
+  /**
+   * @param {String} node node name
+   */
   addNode(node) {
     this.nodes[node] = {}
     this.nodes[node].outgoingConnections = {}
