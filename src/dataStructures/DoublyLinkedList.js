@@ -8,64 +8,78 @@ const createNode = (name,weight) => {
 }
 
 class DoublyLinkedList {
-  constructor() {
-    this.head = null,
-    this.tail = null,
-    this.length = 0,
-    this. weight = 0
+  constructor () {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+    this.weight = 0;
   }
 
+  /**
+ * @param {String} name
+ * @param {Number} weight
+ */
   addToHead(name,weight) {
     const newHead = createNode(name,weight);
-    this.length ++
-    this.weight += weight
+    this.length ++;
+    this.weight += weight;
     if (!this.head) {
-      this.tail = newHead
+      this.tail = newHead;
     } else {
       const previousHead = this.head;
       previousHead.prev = newHead;
       newHead.next = previousHead;
     }
-    this.head = newHead
+    this.head = newHead;
   }
 
+  /**
+ * @param {String} name
+ * @param {Number} weight
+ */
   addNode (name,weight) {
     if (!this.head) {
-      this.addToHead(name, weight)
+      this.addToHead(name, weight);
     } else {
       const newNode = createNode(name,weight);
       const prevTail = this.tail;
       prevTail.next = newNode;
       this.tail = newNode;
       newNode.prev = prevTail;
-      this.weight += weight
-      this.length ++
+      this.weight += weight;
+      this.length ++;
     }
   }
-
+  /**
+   * @param {String} name
+   */
   contains (name) {
     if (!this.head) {
-      return false
-    }
+      return false;
+    };
     function checkForItem(node, name) {
       if (node.name === name) {
-        return true
-      }
+        return true;
+      };
       if (node.next) {
-        return checkForItem(node.next, name)
-      }
-      return false
+        return checkForItem(node.next, name);
+      };
+      return false;
     }
-    return checkForItem(this.head,name)
+    return checkForItem(this.head,name);
   }
 
+  /**
+   * @description Takes no arguments - removes tail of list
+   * @returns {Object}  removed node
+   */
   pop() {
     if (!this.head) {
       return null;
     };
-    const removedNode = {}
+    const removedNode = {};
     removedNode.name = this.tail.name;
-    removedNode.weight = this.tail.weight
+    removedNode.weight = this.tail.weight;
     this.weight -= removedNode.weight;
     this.length --;
     if (this.length === 0) {
