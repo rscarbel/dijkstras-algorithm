@@ -8,7 +8,7 @@ class Graph {
   constructor (node){
     this.nodes = {};
     this.nodes[node] = {};
-    this.nodes[node].outgoingConnections = {}
+    this.nodes[node].outgoingConnections = {};
     this.nodes[node].outgoingConnections[node] = 0;
     this.nodes[node].incomingConnections = [node];
   }
