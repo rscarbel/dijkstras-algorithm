@@ -1,10 +1,10 @@
 import Node from './Node';
-import randomGraph from '../scripts/randomGraph';
 import Line from './Line';
+// import { useState } from 'react';
 
-const GraphDisplay = () => {
+const GraphDisplay = ({displayedGraph}) => {
 
-  let nodes = Object.keys(randomGraph.nodes);
+  let nodes = Object.keys(displayedGraph.nodes);
 
   const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
 
@@ -61,7 +61,7 @@ const GraphDisplay = () => {
 
         {/* Now to add the connecting lines */}
         {domNodes.forEach(e => {
-          const connectedNodes = Object.keys(randomGraph.nodes[e.props.name].outgoingConnections);
+          const connectedNodes = Object.keys(displayedGraph.nodes[e.props.name].outgoingConnections);
 
           //incomingNodes isn't a connection, so I need to remove it
           connectedNodes.splice(connectedNodes.indexOf('incomingNodes'),1);
@@ -71,7 +71,7 @@ const GraphDisplay = () => {
 
           connectedNodes.forEach(i => {
 
-            const weight = randomGraph.nodes[e.props.name].outgoingConnections[i];
+            const weight = displayedGraph.nodes[e.props.name].outgoingConnections[i];
 
             let endingX = parseInt(domNodesByKey[i].x) + 50;
 
