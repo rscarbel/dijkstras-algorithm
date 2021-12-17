@@ -15,7 +15,7 @@ function App() {
     <div className="App">
         <div className='relative-container'>
           <TopBar />
-          <GraphDisplay displayedGraph={randomGraph} />}
+          <GraphDisplay displayedGraph={randomGraph} />
           {console.log(shortestPath)}
       </div>
     </div>
