@@ -6,9 +6,9 @@ The paths are weighted - meaning that some routes are harder to travel on than o
 
 I'm working on it right now, but it is [deployed here](https://dijkstras-algorithm.netlify.app/)
 
-![dijkstras_algorithm_screenshot_2](https://user-images.githubusercontent.com/40727301/146002741-98d54ad6-b69d-44eb-99ae-c03c5cb7b05f.png)
+![Dijkstra_algo_screenshot](https://user-images.githubusercontent.com/40727301/146613280-78b35ff1-3744-45db-81db-6111c4a81278.png)
 
-![dijkstras_algorithm_screenshot](https://user-images.githubusercontent.com/40727301/146002770-12304e93-1c00-4e33-a14e-9dddae5924aa.png)
+
 
 ### Technologies Used
  * React
