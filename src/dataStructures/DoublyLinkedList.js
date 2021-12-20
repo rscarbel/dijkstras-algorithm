@@ -69,6 +69,16 @@ class DoublyLinkedList {
     return checkForItem(this.head,name);
   }
 
+  print() {
+    let orderedNodes = [];
+    let currentNode = this.head;
+    do {
+      orderedNodes.push(currentNode.name);
+      currentNode = currentNode.next;
+    } while (currentNode);
+    return orderedNodes
+  }
+
   /**
    * @description Takes no arguments - removes tail of list
    * @returns {Object}  removed node
