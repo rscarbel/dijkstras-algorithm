@@ -1,55 +1,34 @@
+import DoublyLinkedList from "./DoublyLinkedList";
+/**
+ * @description Binary heap of linked list objects - stored as array ordered by weight
+ */
 class MinBinaryHeap {
   constructor() {
     this.values = [];
     this.size = 0;
   };
 
+  /**
+ * @description Adds list to heap. Does not return anything
+ * @param {DoublyLinkedList} value
+ */
   insert(value) {
-    this.values.push(value);
+    let currentValue = value;
+    this.values.push(currentValue);
 
     let index = this.values.length - 1
 
-    //balance with sibling {
-    if (
-      !index % 2
-      && index > 0
-      ) {
-      let siblingValue = this.values[index - 1];
-      if (siblingValue > value) {
-        this.values[index] = siblingValue;
-        this.values[index - 1] = value;
-        index --
-      }
-    }
-
     while (index > 0 ) {
-
-      //balance with sibling
-      if (index % 2) {
-        let siblingValue = this.values[index + 1];
-        if (siblingValue < value) {
-          this.values[index] = siblingValue;
-          this.values[index + 1] = value;
-          index ++
-        }
-      } else {
-        let siblingValue = this.values[index - 1];
-        if (siblingValue > value) {
-          this.values[index] = siblingValue;
-          this.values[index - 1] = value;
-          index --
-        }
-      }
 
       let parentIndex = Math.floor((index - 1)/2);
       let parentValue = this.values[parentIndex];
 
-      if (value >= parentValue) {
+      if (currentValue.weight >= parentValue.weight) {
         break;
       };
 
       this.values[index] = parentValue;
-      this.values[parentIndex] = value;
+      this.values[parentIndex] = currentValue;
 
 
       index = parentIndex;
@@ -78,7 +57,7 @@ class MinBinaryHeap {
         if(leftIndex < length) {
           leftChild = this.values[leftIndex];
 
-          if(leftChild < check) {
+          if(leftChild.length < check.length) {
             swap = leftIndex;
           }
         }
@@ -87,8 +66,8 @@ class MinBinaryHeap {
           rightChild = this.values[rightIndex];
 
           if(
-            (swap === null && rightChild < check) ||
-            (swap !== null && rightChild < leftChild)
+            (swap === null && rightChild.length < check.length) ||
+            (swap !== null && rightChild.length < leftChild.length)
           ) {
             swap = rightIndex;
           }
