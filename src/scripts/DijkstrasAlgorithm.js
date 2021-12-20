@@ -11,7 +11,6 @@ import MinBinaryHeap from "../dataStructures/MinBinaryHeap";
  */
 const DijkstrasAlorithm = (graph, startNode, endNode) => {
 
-  //return
   if (startNode === endNode) {
     const completePath = new DoublyLinkedList();
     completePath.addToHead(startNode, 0);
