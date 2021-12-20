@@ -143,3 +143,29 @@ describe ('DoublyLinkedList pop', () => {
   });
 
 });
+
+describe ('DoublyLinkedList print', () => {
+  test ('It should return an array', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',4);
+    temp.addNode('C',2);
+    expect(Array.isArray (temp.print())).toBe(true);
+  });
+
+  test ('It should have a length of 3', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',4);
+    temp.addNode('C',2);
+    expect(temp.print().length).toBe(3);
+  });
+
+  test ('Print the correct order of nodes', () => {
+    let temp = new DoublyLinkedList();
+    temp.addNode('A',2);
+    temp.addNode('B',4);
+    temp.addNode('C',2);
+    expect(temp.print()).toStrictEqual(['A','B','C']);
+  });
+});
