@@ -1,4 +1,4 @@
-import path from "path/posix";
+import cloneLinkedList from "./cloneLinkedList";
 import DoublyLinkedList from "../dataStructures/DoublyLinkedList";
 import MinBinaryHeap from "../dataStructures/MinBinaryHeap";
 
@@ -22,37 +22,34 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
   noPath.length = Infinity;
   noPath.print = () => null;
 
+  const startingLinkedList = new DoublyLinkedList ();
+  startingLinkedList.addNode(startNode,0);
+
   const sortedPaths = new MinBinaryHeap ();
-  sortedPaths.insert(noPath)
+  sortedPaths.insert(startingLinkedList);
 
   if (Object.keys(graph.nodes[startNode].outgoingConnections).length === 1 ||
   graph.nodes[endNode].incomingConnections.length === 1 ) {
     return noPath;
   }
 
-  let smallestLinkedList =  sortedPaths.values[0];;
-  let currentNode =  graph[smallestLinkedList.tail.name];
-  let foundNodes = [startNode];
+  let x = 0
 
-  const findClosestNeighbor = (nodeConnections) => {
-    let shortestDistance = Infinity;
-    let neighbor = null;
+  while (sortedPaths.values[0].tail.name !== endNode && x < 20) {
+    x++
+    let currentNode =  sortedPaths.values[0].tail.name;
+    let nodeConnections = graph.nodes[currentNode].outgoingConnections;
     for (let i in nodeConnections) {
-      if (!smallestLinkedList.contains(i)) {
-        let currentDistance = nodeConnections[i]
-        if (currentDistance < shortestDistance) {
-          neighbor = i;
-          shortestDistance = currentDistance;
-        }
+      if (!sortedPaths.values[0].contains(i)) {
+        let newPath = cloneLinkedList(sortedPaths.values[0]);
+        newPath.addNode(i, nodeConnections[i]);
+        sortedPaths.insert(newPath)
       }
     }
-    return neighbor;
-  };
+    sortedPaths.extract()
+    }
 
-
-
-  return sortedPaths.values[0]
-
+    return sortedPaths.values[0] ? sortedPaths.values[0] : noPath;
 };
 
 export default DijkstrasAlorithm;
