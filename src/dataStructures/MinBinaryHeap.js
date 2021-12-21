@@ -14,7 +14,7 @@ class MinBinaryHeap {
  */
   insert(value) {
     let currentValue = value;
-    this.values.push(currentValue);
+    this.values.push(value);
 
     let index = this.values.length - 1
 
