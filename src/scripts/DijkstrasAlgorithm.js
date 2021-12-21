@@ -1,3 +1,4 @@
+import path from "path/posix";
 import DoublyLinkedList from "../dataStructures/DoublyLinkedList";
 import MinBinaryHeap from "../dataStructures/MinBinaryHeap";
 
@@ -17,18 +18,17 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
   }
 
   const noPath = new DoublyLinkedList();
+  noPath.addNode(null,Infinity)
   noPath.length = Infinity;
-  noPath.weight = Infinity;
   noPath.print = () => null;
+
+  const sortedPaths = new MinBinaryHeap ();
+  sortedPaths.insert(noPath)
 
   if (Object.keys(graph.nodes[startNode].outgoingConnections).length === 1 ||
   graph.nodes[endNode].incomingConnections.length === 1 ) {
     return noPath;
   }
-
-  //initialize heap
-  const sortedPaths = new MinBinaryHeap ();
-  sortedPaths.insert(startNode)
 
   let smallestLinkedList =  sortedPaths.values[0];;
   let currentNode =  graph[smallestLinkedList.tail.name];
@@ -51,7 +51,7 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
 
 
 
-  return sortedPaths.values[0];
+  return sortedPaths.values[0]
 
 };
 
