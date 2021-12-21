@@ -6,21 +6,28 @@ import MinBinaryHeap from "../dataStructures/MinBinaryHeap";
  * @param {Graph} graph
  * @param {String} startNode
  * @param {String} endNode
- *
  * @returns {DoublyLinkedList} Path from start node to end node
  */
 const DijkstrasAlorithm = (graph, startNode, endNode) => {
 
   if (startNode === endNode) {
-    const completePath = new DoublyLinkedList();
-    completePath.addToHead(startNode, 0);
-    return completePath
+    const path = new DoublyLinkedList();
+    path.addToHead(startNode, 0);
+    return path
   }
 
-  //initialize a heap to store the paths in order from shortest to longest
-  const sortedLinkedLists = new MinBinaryHeap ();
-  //keep track of what nodes have been discovered
-  const foundNodes = [];
+  const noPath = new DoublyLinkedList();
+  noPath.length = Infinity;
+  noPath.weight = Infinity;
+  noPath.print = () => null;
+
+  if (Object.keys(graph.nodes[startNode].outgoingConnections).length === 1 ||
+  graph.nodes[endNode].incomingConnections.length === 1 ) {
+    return noPath;
+  }
+
+  //initialize heap
+  const sortedPaths = new MinBinaryHeap ();
 
   const dijkstraTime = (currentNode) => {
     //track what the lowest weight is
@@ -37,7 +44,7 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
       }
     }
   }
-  return [sortedLinkedLists,foundNodes,dijkstraTime]
+  return sortedPaths.values[0];
 
 };
 
