@@ -11,6 +11,7 @@ exampleGraph.addNode('E');
 exampleGraph.addNode('F');
 exampleGraph.addNode('G');
 exampleGraph.addNode('H');
+exampleGraph.addNode('Z');
 exampleGraph.addConnection('A','B',1);
 exampleGraph.addConnection('A', 'C', 1);
 exampleGraph.addConnection('B', 'C', 1);
@@ -35,49 +36,81 @@ describe ('Dijkstra\'s algorithm should return a doubly linked list', () => {
   });
 });
 
-// describe ('Dijkstra\'s algorithm should find the shortest path between two nodes', () => {
-//   let temp = DijkstrasAlorithm(exampleGraph,'A','A')
-//   test ('It should be [\'A\']', () => {
-//     expect(temp.print()).toStrictEqual(['A']);
-//   });
+describe ('Dijkstra\'s algorithm should find the shortest path between two nodes', () => {
+  let temp = DijkstrasAlorithm(exampleGraph,'A','A')
+  test ('It should be [\'A\']', () => {
+    expect(temp.print()).toStrictEqual(['A']);
+  });
 
-//   let temp2 = DijkstrasAlorithm(exampleGraph,'A','B')
-//   test ('It should be [\'A\']', () => {
-//     expect(temp2.print()).toStrictEqual(['A,B']);
-//   });
+  let temp2 = DijkstrasAlorithm(exampleGraph,'A','B')
+  test ('It should be [\'A\',\'B\']', () => {
+    expect(temp2.print()).toStrictEqual(['A,B']);
+  });
 
-//   test ('It have a weight of 1', () => {
-//     expect(temp2.weight).toBe(1);
-//   });
+  test ('It have a weight of 1', () => {
+    expect(temp2.weight).toBe(1);
+  });
 
-//   test ('It have a length of 1', () => {
-//     expect(temp2.length).toBe(1);
-//   });
+  test ('It have a length of 1', () => {
+    expect(temp2.length).toBe(1);
+  });
 
-//   let temp3 = DijkstrasAlorithm(exampleGraph,'A','D')
-//   test ('It should be [\'A\',\'C\',\'D\']', () => {
-//     expect(temp3.print()).toStrictEqual(['A,C,D']);
-//   });
+  let temp3 = DijkstrasAlorithm(exampleGraph,'A','D')
+  test ('It should be [\'A\',\'C\',\'D\']', () => {
+    expect(temp3.print()).toStrictEqual(['A,C,D']);
+  });
 
-//   test ('It have a weight of 3', () => {
-//     expect(temp3.weight).toBe(3);
-//   });
+  test ('It have a weight of 3', () => {
+    expect(temp3.weight).toBe(3);
+  });
 
-//   test ('It have a length of 2', () => {
-//     expect(temp3.length).toBe(2);
-//   });
+  test ('It have a length of 2', () => {
+    expect(temp3.length).toBe(2);
+  });
 
-//   let temp4 = DijkstrasAlorithm(exampleGraph,'A','G')
-//   test ('It should be [\'A\',\'C\',\'D\',\'G\']', () => {
-//     expect(temp4.print()).toStrictEqual(['A,C,D,G']);
-//   });
+  let temp4 = DijkstrasAlorithm(exampleGraph,'A','G')
+  test ('It should be [\'A\',\'C\',\'D\',\'G\']', () => {
+    expect(temp4.print()).toStrictEqual(['A,C,D,G']);
+  });
 
-//   test ('It have a weight of 13', () => {
-//     expect(temp4.weight).toBe(13);
-//   });
+  test ('It have a weight of 13', () => {
+    expect(temp4.weight).toBe(13);
+  });
 
-//   test ('It have a length of 3', () => {
-//     expect(temp4.length).toBe(3);
-//   });
+  test ('It have a length of 3', () => {
+    expect(temp4.length).toBe(3);
+  });
 
-// });
+});
+
+
+describe ('handelers no path exists to ending node', () => {
+  let temp = DijkstrasAlorithm(exampleGraph,'A','Z')
+  test ('The length should be infinite', () => {
+    expect(temp.length).toBe(Infinity);
+  });
+
+  test ('The weight should be infinite', () => {
+    expect(temp.weight).toBe(Infinity);
+  });
+
+  test ('It should print null', () => {
+    expect(temp.print()).toBe(null);
+  });
+});
+
+describe ('no path exists leaving starting node', () => {
+  let temp2 = DijkstrasAlorithm(exampleGraph, 'Z','H')
+
+  test ('The length should be infinite', () => {
+    expect(temp2.length).toBe(Infinity);
+  });
+
+  test ('The weight should be infinite', () => {
+    expect(temp2.weight).toBe(Infinity);
+  });
+
+  test ('It should print null', () => {
+    expect(temp2.print()).toBe(null);
+  });
+});
