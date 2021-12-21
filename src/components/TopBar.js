@@ -47,7 +47,6 @@ const findPathButton = {
 }
 
 const textStyle = {
-  fontSize: '1.2em',
   margin: '0 2em',
   textAlign: 'left',
 }
