@@ -47,12 +47,12 @@ describe ('Dijkstra\'s algorithm should find the shortest path between two nodes
     expect(temp2.print()).toStrictEqual(['A,B']);
   });
 
-  test ('It have a weight of 1', () => {
+  test ('It should have a weight of 1', () => {
     expect(temp2.weight).toBe(1);
   });
 
-  test ('It have a length of 1', () => {
-    expect(temp2.length).toBe(1);
+  test ('It should have a length of 2', () => {
+    expect(temp2.length).toBe(2);
   });
 
   let temp3 = DijkstrasAlorithm(exampleGraph,'A','D')
@@ -64,8 +64,8 @@ describe ('Dijkstra\'s algorithm should find the shortest path between two nodes
     expect(temp3.weight).toBe(3);
   });
 
-  test ('It have a length of 2', () => {
-    expect(temp3.length).toBe(2);
+  test ('It have a length of 3', () => {
+    expect(temp3.length).toBe(3);
   });
 
   let temp4 = DijkstrasAlorithm(exampleGraph,'A','G')
@@ -77,8 +77,8 @@ describe ('Dijkstra\'s algorithm should find the shortest path between two nodes
     expect(temp4.weight).toBe(13);
   });
 
-  test ('It have a length of 3', () => {
-    expect(temp4.length).toBe(3);
+  test ('It have a length of 4', () => {
+    expect(temp4.length).toBe(4);
   });
 
 });
