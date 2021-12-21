@@ -28,22 +28,29 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
 
   //initialize heap
   const sortedPaths = new MinBinaryHeap ();
+  sortedPaths.insert(startNode)
 
-  const dijkstraTime = (currentNode) => {
-    //track what the lowest weight is
-    let lowestWeight = {weight: -Infinity}
+  let smallestLinkedList =  sortedPaths.values[0];;
+  let currentNode =  graph[smallestLinkedList.tail.name];
+  let foundNodes = [startNode];
 
-    let neighbors = currentNode.outgoingConnections
-    //look through connections in current node
-    for (let nextNode in neighbors) {
-
-      let neighborWeight = neighbors[nextNode]
-
-      if (neighborWeight > lowestWeight.weight) {
-        lowestWeight = {name: nextNode, weight: neighborWeight}
+  const findClosestNeighbor = (nodeConnections) => {
+    let shortestDistance = Infinity;
+    let neighbor = null;
+    for (let i in nodeConnections) {
+      if (!smallestLinkedList.contains(i)) {
+        let currentDistance = nodeConnections[i]
+        if (currentDistance < shortestDistance) {
+          neighbor = i;
+          shortestDistance = currentDistance;
+        }
       }
     }
-  }
+    return neighbor;
+  };
+
+
+
   return sortedPaths.values[0];
 
 };
