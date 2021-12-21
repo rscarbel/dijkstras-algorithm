@@ -46,7 +46,7 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
     sortedPaths.extract()
     }
 
-    return sortedPaths.values.length ? sortedPaths.values[0] : noPath;
+    return sortedPaths.values.length ? sortedPaths.values : noPath;
 };
 
 export default DijkstrasAlorithm;
