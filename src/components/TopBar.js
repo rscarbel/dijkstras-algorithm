@@ -46,10 +46,10 @@ const findPathButton = {
   borderColor: '#28a745',
 }
 
-const TopBar = () => {
+const TopBar = ({reloadAction}) => {
   return <div style={componentStyle}>
     <h1 style={h1Style}>Dijkstra's Algorithm</h1>
-    <button style={newGraphButton}>New Graph</button>
+    <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
     <button style={selectButton}>Select Nodes</button>
     <button style={findPathButton}>Find Path</button>
 

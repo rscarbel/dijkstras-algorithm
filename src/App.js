@@ -1,11 +1,15 @@
 import GraphDisplay from './components/GraphDisplay';
 import './App.css';
 import TopBar from './components/TopBar';
-// import {useState } from 'react';
+import {useState } from 'react';
 import DijkstrasAlorithm from './scripts/DijkstrasAlgorithm';
 import randomGraph from './scripts/randomGraph';
 
 function App() {
+  const [graph, setGraph] = useState(<GraphDisplay displayedGraph={randomGraph} />)
+  const reloadGraph = () => {
+    setGraph(<GraphDisplay displayedGraph={randomGraph} />);
+  }
   let keys = []
   for (let key in randomGraph.nodes) {
     keys.push(key)
@@ -14,8 +18,8 @@ function App() {
   return (
     <div className="App">
         <div className='relative-container'>
-          <TopBar />
-          <GraphDisplay displayedGraph={randomGraph} />
+          <TopBar reloadAction={reloadGraph} />
+          {graph}
           {console.log(shortestPath)}
       </div>
     </div>
