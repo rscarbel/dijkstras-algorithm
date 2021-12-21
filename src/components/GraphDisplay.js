@@ -62,9 +62,6 @@ const GraphDisplay = ({displayedGraph}) => {
         {/* Now to add the connecting lines */}
         {domNodes.forEach(e => {
           const connectedNodes = Object.keys(displayedGraph.nodes[e.props.name].outgoingConnections);
-
-          //incomingNodes isn't a connection, so I need to remove it
-          connectedNodes.splice(connectedNodes.indexOf('incomingNodes'),1);
           //I added 50 to the starting x & y values to place it in the center of the circle
           let startingX = parseInt(e.props.x) + 50;
           let startingY = parseInt(e.props.y) + 50;
