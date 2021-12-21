@@ -1,4 +1,3 @@
-import DoublyLinkedList from "./DoublyLinkedList";
 /**
  * @description Binary heap of linked list objects - stored as array ordered by weight
  */

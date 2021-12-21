@@ -16,9 +16,11 @@ function App() {
     keys.push(key)
   }
   let shortestPath = DijkstrasAlorithm(theGraph,keys[0],keys[keys.length - 1]);
-  const [startNode, setStartNode] = useState(keys[0]);
-  const [endNode, setEndNode] = useState(keys[keys.length - 1]);
-  const path = shortestPath[0].print() ? shortestPath[0].print().join(' --> ') : 'No Path Exists';
+  // const [startNode, setStartNode] = useState(keys[0]);
+  const startNode = keys[0];
+  // const [endNode, setEndNode] = useState(keys[keys.length - 1]);
+  const endNode = keys[keys.length - 1];
+  const path = shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists';
   return (
     <div className="App">
         <div className='relative-container'>
