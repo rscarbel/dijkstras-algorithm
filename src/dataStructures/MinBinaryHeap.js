@@ -57,7 +57,7 @@ class MinBinaryHeap {
         if(leftIndex < length) {
           leftChild = this.values[leftIndex];
 
-          if(leftChild.length < check.length) {
+          if(leftChild.weight < check.weight) {
             swap = leftIndex;
           }
         }
@@ -66,8 +66,8 @@ class MinBinaryHeap {
           rightChild = this.values[rightIndex];
 
           if(
-            (swap === null && rightChild.length < check.length) ||
-            (swap !== null && rightChild.length < leftChild.length)
+            (swap === null && rightChild.weight < check.weight) ||
+            (swap !== null && rightChild.weight < leftChild.weight)
           ) {
             swap = rightIndex;
           }
