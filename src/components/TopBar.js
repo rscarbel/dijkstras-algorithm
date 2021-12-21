@@ -46,12 +46,23 @@ const findPathButton = {
   borderColor: '#28a745',
 }
 
-const TopBar = ({reloadAction}) => {
+const textStyle = {
+  fontSize: '1.2em',
+  margin: '0 2em',
+  textAlign: 'left',
+}
+
+const TopBar = ({ reloadAction, startNode, endNode, path }) => {
   return <div style={componentStyle}>
     <h1 style={h1Style}>Dijkstra's Algorithm</h1>
     <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
     <button style={selectButton}>Select Nodes</button>
     <button style={findPathButton}>Find Path</button>
+    <div style={textStyle}>
+      <p>Start Node: {startNode}</p>
+      <p>End Node: {endNode}</p>
+    </div>
+    <p style={textStyle}>Path: {path}</p>
 
   </div>
 }
