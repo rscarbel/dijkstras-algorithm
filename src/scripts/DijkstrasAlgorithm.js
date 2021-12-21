@@ -11,11 +11,11 @@ import MinBinaryHeap from "../dataStructures/MinBinaryHeap";
  */
 const DijkstrasAlorithm = (graph, startNode, endNode) => {
 
-  if (startNode === endNode) {
-    const path = new DoublyLinkedList();
-    path.addToHead(startNode, 0);
-    return path
-  }
+  // if (startNode === endNode) {
+  //   const path = new DoublyLinkedList();
+  //   path.addToHead(startNode, 0);
+  //   return path
+  // }
 
   const noPath = new DoublyLinkedList();
   noPath.addNode(null,Infinity)
@@ -28,15 +28,12 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
   const sortedPaths = new MinBinaryHeap ();
   sortedPaths.insert(startingLinkedList);
 
-  if (Object.keys(graph.nodes[startNode].outgoingConnections).length === 1 ||
-  graph.nodes[endNode].incomingConnections.length === 1 ) {
-    return noPath;
-  }
+  // if (Object.keys(graph.nodes[startNode].outgoingConnections).length === 1 ||
+  // graph.nodes[endNode].incomingConnections.length === 1 ) {
+  //   return noPath;
+  // }
 
-  let x = 0
-
-  while (sortedPaths.values[0].tail.name !== endNode && x < 20) {
-    x++
+  while (sortedPaths.values.length > 0 && sortedPaths.values[0].tail.name !== endNode) {
     let currentNode =  sortedPaths.values[0].tail.name;
     let nodeConnections = graph.nodes[currentNode].outgoingConnections;
     for (let i in nodeConnections) {
@@ -49,7 +46,7 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
     sortedPaths.extract()
     }
 
-    return sortedPaths.values[0] ? sortedPaths.values[0] : noPath;
+    return sortedPaths.values.length ? sortedPaths.values[0] : noPath;
 };
 
 export default DijkstrasAlorithm;
