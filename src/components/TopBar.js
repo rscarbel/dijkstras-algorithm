@@ -34,9 +34,8 @@ const newGraphButton = {
 
 const selectButton = {
   ...buttonStyles,
-  backgroundColor: '#ffc107',
-  color: '#000000',
-  borderColor: '#ffc107',
+  backgroundColor: '#28a745',
+  borderColor: '#28a745',
 }
 
 const findPathButton = {
@@ -50,12 +49,19 @@ const textStyle = {
   textAlign: 'left',
 }
 
-const TopBar = ({ reloadAction, startNode, endNode, path }) => {
+const TopBar = ({
+  reloadAction,
+  startNode,
+  endNode,
+  path,
+  toggleSelectionMode,
+  selectionMode
+  }) => {
+
   return <div style={componentStyle}>
     <h1 style={h1Style}>Dijkstra's Algorithm</h1>
     <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
-    <button style={selectButton}>Select Nodes</button>
-    <button style={findPathButton}>Find Path</button>
+    <button onClick={!selectionMode ? toggleSelectionMode : () => ''} style={selectButton}>Select Nodes</button>
     <div style={textStyle}>
       <p>Start Node: {startNode}</p>
       <p>End Node: {endNode}</p>
