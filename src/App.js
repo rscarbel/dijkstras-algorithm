@@ -51,7 +51,9 @@ function App() {
   const [endNode, setEndNode] = useState(keys[keys.length - 1]);
 
   const selectEndNode = (newNode) => {
-    setEndNode(newNode)
+    setEndNode(newNode);
+    shortestPath = DijkstrasAlorithm(graph,startNode,newNode);
+      setPath(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists');
   }
 
   const [selectionMode, setSelectionMode] = useState(false);
@@ -69,10 +71,8 @@ function App() {
     setHorizontalCoordinates(horizontalLocations(nodeAmount))
   };
 
-  const toggleSelectionMode = () => {
+  const toggleSelectionMode = (start,end) => {
     setSelectionMode(!selectionMode);
-    shortestPath = DijkstrasAlorithm(graph,startNode,endNode);
-    setPath(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists')
     if (!selectionMode) {
       setPath('')
       setStartNode('');
@@ -99,6 +99,8 @@ function App() {
         horizontalLocations={horizontalCoordinates}
         selectionMode={selectionMode}
         toggleSelectionMode={toggleSelectionMode}
+        startNode={startNode}
+        endNode={endNode}
         selectStartNode={selectStartNode}
         selectEndNode={selectEndNode}
       />
