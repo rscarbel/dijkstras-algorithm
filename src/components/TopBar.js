@@ -1,5 +1,5 @@
 const componentStyle = {
-  width: 'fit-content',
+  width: '100%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -9,7 +9,7 @@ const componentStyle = {
 }
 
 const h1Style = {
-  fontSize: '3em',
+  fontSize: '2.5em',
   margin: '0 1.3em',
   zIndex: '999',
 }
@@ -55,7 +55,7 @@ const TopBar = ({
 
   return <div style={componentStyle}>
 
-    <h1 style={h1Style}>Dijkstra's Algorithm</h1>
+    <h1 style={h1Style}>Dijkstra's<br />Algorithm</h1>
     <div style={{display:'flex',flexWrap:'wrap',flexDirection: 'column',alignContent: 'space-around', justifyContent: 'space-around'}}>
       <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
 
