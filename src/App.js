@@ -8,11 +8,8 @@ import verticalLocations from './scripts/verticalLocations';
 import horizontalLocations from './scripts/horizontalLocations';
 
 let graph = randomGraph();
-let keys = []
+
 function App() {
-  for (let key in graph.nodes) {
-    keys.push(key)
-  };
   let nodeAmount = Object.keys(graph.nodes).length
 
   const reloadGraph = () => {
@@ -26,29 +23,25 @@ function App() {
   };
 
   const newPathing = () => {
-    keys = [];
-    for (let key in graph.nodes) {
-      keys.push(key)
-    };
 
-    setStartNode(keys[0])
-    setEndNode(keys[keys.length - 1])
+    setStartNode('')
+    setEndNode('')
 
-    shortestPath = DijkstrasAlorithm(graph,keys[0],keys[keys.length - 1]);
-    setPath(shortestPath[0]);
+    shortestPath = DijkstrasAlorithm(graph,'','');
+    setPath(null);
   }
 
 
 
-  let shortestPath = DijkstrasAlorithm(graph,keys[0],keys[keys.length - 1]);
+  let shortestPath = DijkstrasAlorithm(graph,'','');
 
-  const [startNode, setStartNode] = useState(keys[0]);
+  const [startNode, setStartNode] = useState('');
 
   const selectStartNode = (newNode) => {
     setStartNode(newNode)
   }
 
-  const [endNode, setEndNode] = useState(keys[keys.length - 1]);
+  const [endNode, setEndNode] = useState('');
 
   const selectEndNode = (newNode) => {
     setEndNode(newNode);
@@ -80,7 +73,7 @@ function App() {
     }
   }
 
-  const [path, setPath] = useState(shortestPath[0])
+  const [path, setPath] = useState(null)
 
   return (
     <div className="App">
