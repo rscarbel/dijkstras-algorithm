@@ -5,8 +5,23 @@ const Node = ({
   selectionMode,
   toggleSelectionMode,
   selectStartNode,
-  selectEndNode
+  selectEndNode,
+  startNode,
+  endNode
   }) => {
+
+  let nodeBackgroundColor = '';
+
+  if (name === startNode && name === endNode) {
+    nodeBackgroundColor = '#1F4E79';
+  } else if (name === startNode) {
+    nodeBackgroundColor = '#385723';
+  } else if (name === endNode) {
+    nodeBackgroundColor = '#7F6000';
+  } else {
+    nodeBackgroundColor = '#282c34';
+  }
+
   const divStyle = {
     top: y,
     left: x,
@@ -23,16 +38,28 @@ const Node = ({
     width: '100%',
   }
 
+  const applyNodeSelection = () => {
+    if (selectionMode) {
+      if (!startNode) {
+        selectStartNode(name);
+      } else {
+        selectEndNode(name);
+        toggleSelectionMode();
+      }
+    }
+  }
+
   return <>
   <div className='node-circle' id={name}  style={divStyle}>
 
     <svg style={gridChild}>
       <circle
+      onClick={applyNodeSelection}
       className='node'
       cx='50'
       cy='50'
       r='50'
-      fill='#282c34'
+      fill={nodeBackgroundColor}
       opacity={0.8}
       />
     </svg>
