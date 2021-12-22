@@ -59,13 +59,18 @@ const TopBar = ({
   }) => {
 
   return <div style={componentStyle}>
+
     <h1 style={h1Style}>Dijkstra's Algorithm</h1>
+
     <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
+
     <button onClick={!selectionMode ? toggleSelectionMode : () => ''} style={selectButton}>Select Nodes</button>
+
     <div style={textStyle}>
       <p>Start Node: {startNode}</p>
       <p>End Node: {endNode}</p>
     </div>
+
     <p style={textStyle}>Path: {path}</p>
 
   </div>
