@@ -8,7 +8,9 @@ const GraphDisplay = ({
   selectionMode,
   toggleSelectionMode,
   selectStartNode,
-  selectEndNode
+  selectEndNode,
+  endNode,
+  startNode
   }) => {
 
   let nodes = Object.keys(displayedGraph.nodes);
@@ -26,6 +28,8 @@ const GraphDisplay = ({
         toggleSelectionMode={toggleSelectionMode}
         selectStartNode={selectStartNode}
         selectEndNode={selectEndNode}
+        endNode={endNode}
+        startNode={startNode}
         key={e}
         name={e}
         x={horizontalLocations[nodePositionCounter]}
