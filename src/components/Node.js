@@ -1,4 +1,12 @@
-const Node = ({ name, x, y }) => {
+const Node = ({
+  name,
+  x,
+  y,
+  selectionMode,
+  toggleSelectionMode,
+  selectStartNode,
+  selectEndNode
+  }) => {
   const divStyle = {
     top: y,
     left: x,
