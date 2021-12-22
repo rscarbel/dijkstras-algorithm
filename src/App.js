@@ -4,20 +4,40 @@ import TopBar from './components/TopBar';
 import {useState } from 'react';
 import DijkstrasAlorithm from './scripts/DijkstrasAlgorithm';
 import randomGraph from './scripts/randomGraph';
+import verticalLocations from './scripts/verticalLocations';
+import horizontalLocations from './scripts/horizontalLocations';
 
+let graph = randomGraph();
+let keys = []
 function App() {
-
-  const [graph, setGraph] = useState(randomGraph());
-
-  const reloadGraph = () => {
-    setGraph(randomGraph());
-  };
-
-  let keys = [];
-
   for (let key in graph.nodes) {
     keys.push(key)
   };
+  let nodeAmount = Object.keys(graph.nodes).length
+
+  const reloadGraph = () => {
+    graph = randomGraph();
+    nodeAmount = Object.keys(graph.nodes).length
+
+    generateVerticalCoordinates(nodeAmount);
+    generateHorizontalCoordinates(nodeAmount);
+    newPathing()
+  };
+
+  const newPathing = () => {
+    keys = [];
+    for (let key in graph.nodes) {
+      keys.push(key)
+    };
+
+    setStartNode(keys[0])
+    setEndNode(keys[keys.length - 1])
+
+    shortestPath = DijkstrasAlorithm(graph,keys[0],keys[keys.length - 1]);
+    setPath(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists');
+  }
+
+
 
   let shortestPath = DijkstrasAlorithm(graph,keys[0],keys[keys.length - 1]);
 
@@ -35,11 +55,31 @@ function App() {
 
   const [selectionMode, setSelectionMode] = useState(false);
 
+  const [verticalCoordinates, setVerticalCoordinates] = useState(verticalLocations(nodeAmount));
+
+  const generateVerticalCoordinates = () => {
+    setVerticalCoordinates(verticalLocations(nodeAmount))
+  };
+
+  const [horizontalCoordinates, setHorizontalCoordinates] = useState(horizontalLocations(nodeAmount));
+
+
+  const generateHorizontalCoordinates = () => {
+    setHorizontalCoordinates(horizontalLocations(nodeAmount))
+  };
+
   const toggleSelectionMode = () => {
-    setSelectionMode(!selectionMode)
+    setSelectionMode(!selectionMode);
+    shortestPath = DijkstrasAlorithm(graph,startNode,endNode);
+    setPath(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists')
+    if (!selectionMode) {
+      setPath('')
+      setStartNode('');
+      setEndNode('');
+    }
   }
 
-  const path = shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists';
+  const [path, setPath] = useState(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists')
 
   return (
     <div className="App">
@@ -54,14 +94,13 @@ function App() {
 
       <GraphDisplay
         displayedGraph={graph}
+        verticalLocations={verticalCoordinates}
+        horizontalLocations={horizontalCoordinates}
         selectionMode={selectionMode}
         toggleSelectionMode={toggleSelectionMode}
         selectStartNode={selectStartNode}
         selectEndNode={selectEndNode}
       />
-
-      {console.log(graph)}
-      {console.log(shortestPath)}
     </div>
   );
 }
