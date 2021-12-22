@@ -17,7 +17,8 @@ function App() {
 
   const reloadGraph = () => {
     graph = randomGraph();
-    nodeAmount = Object.keys(graph.nodes).length
+    nodeAmount = Object.keys(graph.nodes).length;
+    setSelectionMode(false)
 
     generateVerticalCoordinates(nodeAmount);
     generateHorizontalCoordinates(nodeAmount);
