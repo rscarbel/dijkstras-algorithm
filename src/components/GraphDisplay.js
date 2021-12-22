@@ -1,62 +1,41 @@
 import Node from './Node';
 import Line from './Line';
-// import { useState } from 'react';
 
-const GraphDisplay = ({displayedGraph}) => {
+const GraphDisplay = ({
+  verticalLocations,
+  horizontalLocations,
+  displayedGraph,
+  selectionMode,
+  toggleSelectionMode,
+  selectStartNode,
+  selectEndNode
+  }) => {
 
   let nodes = Object.keys(displayedGraph.nodes);
-
-  const generateNumber = (max,min) => Math.ceil((Math.random() * (max - min + 1)) + min);
-
-  //I subtracted 100 to account for the title text
-  let height = window.innerHeight - 100;
-
-  let horizontalSpacing = (window.innerWidth / nodes.length) - (200 / nodes.length)
-
-  let xCoordinate = 0;
-
-  let yCoordinate = 0;
 
   let domNodes = [];
   let domNodesByKey = {};
   const lines = [];
+  let nodePositionCounter = 0;
 
   return <>
     {nodes.forEach(e => {
 
-      let distanceToWindowEdge = yCoordinate < (height / 2)
-      ? height - yCoordinate - 50
-      : yCoordinate - 150
-
-      //Anything less than this just isn't interesting, and anything more starts to be too predictable
-      let minimumVerticalChange = height / 3.2 > 100
-      ? height / 5
-      : 100
-
-      let verticalChange = generateNumber(distanceToWindowEdge, minimumVerticalChange)
-      //keep nodes from being created above the top of the page
-      if ((yCoordinate - verticalChange) < 100) {
-        yCoordinate += verticalChange;
-      }
-      //keep nodes from being created below the bottom of the page
-      else if ((yCoordinate + verticalChange) > (height - 100)){
-        yCoordinate -= verticalChange;
-      } else {
-        if (generateNumber(1,0)) {
-          yCoordinate += verticalChange;
-        } else {
-          yCoordinate -= verticalChange;
-        }
-      }
-
-      xCoordinate += generateNumber(horizontalSpacing,100);
-
-      domNodes.push(<Node key={e} name={e} x={xCoordinate} y={yCoordinate} />)
+      domNodes.push(<Node
+        selectionMode={selectionMode}
+        toggleSelectionMode={toggleSelectionMode}
+        selectStartNode={selectStartNode}
+        selectEndNode={selectEndNode}
+        key={e}
+        name={e}
+        x={horizontalLocations[nodePositionCounter]}
+        y={verticalLocations[nodePositionCounter]}
+        />)
 
       domNodesByKey[e] = {}
-      domNodesByKey[e].x = xCoordinate;
-      domNodesByKey[e].y = yCoordinate;
-
+      domNodesByKey[e].x = horizontalLocations[nodePositionCounter];
+      domNodesByKey[e].y = verticalLocations[nodePositionCounter];
+      nodePositionCounter++
         })}
 
         {/* Now to add the connecting lines */}
