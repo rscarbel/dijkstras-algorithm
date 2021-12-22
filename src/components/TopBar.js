@@ -69,9 +69,9 @@ const TopBar = ({
 
     <p style={textStyle}><strong>Path:</strong> {path ? path.print().join(' -> ') : 'No Path Exists'}</p>
     <div>
-    <p style={{marginRight: '5px',textAlign:'left'}}><strong>Total weight</strong><br />{path?.weight ? path.weight : 0}</p>
+    <p style={{marginRight: '5px',textAlign:'left'}}><strong>Total weight</strong><br />{path?.length ? path.weight : 'n/a'}</p>
     <br />
-    <p style={{marginRight: '5px',textAlign:'left'}}><strong>Number of paths</strong><br />{path?.length ? path.length - 1 : 0}</p>
+    <p style={{marginRight: '5px',textAlign:'left'}}><strong>Number of paths</strong><br />{path?.length ? path.length - 1 : 'n/a'}</p>
     </div>
 
   </div>
