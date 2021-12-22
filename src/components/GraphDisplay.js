@@ -48,17 +48,17 @@ const GraphDisplay = ({
         {/* Now to add the connecting lines */}
         {domNodes.forEach(e => {
           const connectedNodes = Object.keys(displayedGraph.nodes[e.props.name].outgoingConnections);
-          //I added 50 to the starting x & y values to place it in the center of the circle
-          let startingX = parseInt(e.props.x) + 50;
-          let startingY = parseInt(e.props.y) + 50;
+          //I added 40 to the starting x & y values to place it in the center of the circle
+          let startingX = parseInt(e.props.x) + 40;
+          let startingY = parseInt(e.props.y) + 40;
 
           connectedNodes.forEach(i => {
 
             const weight = displayedGraph.nodes[e.props.name].outgoingConnections[i];
 
-            let endingX = parseInt(domNodesByKey[i].x) + 50;
+            let endingX = parseInt(domNodesByKey[i].x) + 40;
 
-            let endingY = parseInt(domNodesByKey[i].y) + 50;
+            let endingY = parseInt(domNodesByKey[i].y) + 40;
 
             //Check if the key is aready there
             //then check to see if a line has already been drawn in the reverse direction

@@ -27,8 +27,8 @@ const Node = ({
     left: x,
     zIndex: 2,
     display: 'grid',
-    height: '100px',
-    width: '100px',
+    height: '80px',
+    width: '80px',
   };
 
   const gridChild = {
@@ -56,9 +56,9 @@ const Node = ({
       <circle
       onClick={applyNodeSelection}
       className='node'
-      cx='50'
-      cy='50'
-      r='50'
+      cx='40'
+      cy='40'
+      r='40'
       fill={nodeBackgroundColor}
       opacity={0.8}
       />
