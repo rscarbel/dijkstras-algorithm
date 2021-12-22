@@ -65,7 +65,7 @@ const Node = ({
     </svg>
 
     <div className="node-text-wrapper">
-      <p className='node-text'>{name}</p>
+      <p className='node-text nonselectable'>{name}</p>
     </div>
 
   </div>

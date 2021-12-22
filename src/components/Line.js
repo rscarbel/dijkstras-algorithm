@@ -65,6 +65,7 @@ const Line = ({startingX,
       stroke='#000000'/>
 
       <text
+      className='nonselectable'
       style={textStyle}
       x={(endingX + startingX)/2 - 5.5}
       y={(endingY + startingY)/2 + 5.5}

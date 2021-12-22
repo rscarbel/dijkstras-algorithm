@@ -43,6 +43,10 @@ body {
   pointer-events: none;
 }
 
+.nonselectable {
+  user-select: none;
+}
+
 button {
   cursor: pointer;
 }
