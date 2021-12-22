@@ -15,11 +15,12 @@ const h1Style = {
 }
 
 const buttonStyles = {
-  margin: '0 .5em',
+  flexGrow: '1',
+  margin: '0.3em 0',
   padding: '.5em 2em',
   borderRadius: '10px',
   color: '#FFFFFF',
-  fontSize: '1.2em',
+  fontSize: '1em',
   cursor: 'pointer',
   textAlign: 'center',
   userSelect: 'none',
@@ -55,21 +56,23 @@ const TopBar = ({
   return <div style={componentStyle}>
 
     <h1 style={h1Style}>Dijkstra's Algorithm</h1>
+    <div style={{display:'flex',flexWrap:'wrap',flexDirection: 'column',alignContent: 'space-around', justifyContent: 'space-around'}}>
+      <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
 
-    <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
-
-    <button onClick={!selectionMode ? toggleSelectionMode : () => ''} style={selectButton}>Select Nodes</button>
-
-    <div style={textStyle}>
-      <p>Start Node: {startNode}</p>
-      <p>End Node: {endNode}</p>
+      <button onClick={!selectionMode ? toggleSelectionMode : () => ''} style={selectButton}>Select Nodes</button>
     </div>
 
-    <p style={textStyle}>Path: {path ? path.print().join(' --> ') : 'No Path Exists'}</p>
+    <div style={textStyle}>
+      <p><strong>Start Node</strong><br />{startNode}</p>
+      <p><strong>End Node</strong><br />{endNode}</p>
+    </div>
 
-    <p style={textStyle}>Total weight: {path.weight ? path.weight : 0}</p>
-
-    <p style={textStyle}>Number of paths: {path.length ? path.length - 1 : 0}</p>
+    <p style={textStyle}><strong>Path:</strong> {path ? path.print().join(' -> ') : 'No Path Exists'}</p>
+    <div>
+    <p style={{marginRight: '5px',textAlign:'left'}}><strong>Total weight</strong><br />{path?.weight ? path.weight : 0}</p>
+    <br />
+    <p style={{marginRight: '5px',textAlign:'left'}}><strong>Number of paths</strong><br />{path?.length ? path.length - 1 : 0}</p>
+    </div>
 
   </div>
 }
