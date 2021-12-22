@@ -15,12 +15,6 @@ body {
   background-color: #e7f5ff;
   font-family: 'Roboto', sans-serif;
 }
-/*
-.relative-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-} */
 
 .node-circle {
   position: absolute;
@@ -43,6 +37,10 @@ body {
 .node-circle>svg>circle:hover {
   opacity: 1;
   cursor: pointer;
+}
+
+.line {
+  pointer-events: none;
 }
 
 button {
