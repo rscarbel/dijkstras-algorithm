@@ -28,11 +28,6 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
   const sortedPaths = new MinBinaryHeap ();
   sortedPaths.insert(startingLinkedList);
 
-  // if (Object.keys(graph.nodes[startNode].outgoingConnections).length === 1 ||
-  // graph.nodes[endNode].incomingConnections.length === 1 ) {
-  //   return noPath;
-  // }
-
   while (sortedPaths.values.length > 0 && sortedPaths.values[0].tail.name !== endNode) {
     let currentNode =  sortedPaths.values[0].tail.name;
     let nodeConnections = graph.nodes[currentNode].outgoingConnections;
