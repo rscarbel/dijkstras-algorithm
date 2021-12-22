@@ -6,7 +6,7 @@ const verticalLocations = (nodeAmount) => {
 
   let height = window.innerHeight - 120;
 
-  let yCoordinate = 0;
+  let yCoordinate = 80;
 
   let distanceToWindowEdge = yCoordinate < (height / 2)
   ? height - yCoordinate - 100
@@ -24,7 +24,7 @@ const verticalLocations = (nodeAmount) => {
     yCoordinate += verticalChange;
     }
     //keep nodes from being created below the bottom of the page
-    else if ((yCoordinate + verticalChange) > (height - 100)){
+    else if ((yCoordinate + verticalChange) > height){
     yCoordinate -= verticalChange;
     } else {
       if (generateNumber(1,0)) {
