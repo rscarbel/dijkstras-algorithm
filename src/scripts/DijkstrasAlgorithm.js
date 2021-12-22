@@ -29,8 +29,13 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
   sortedPaths.insert(startingLinkedList);
 
   while (sortedPaths.values.length > 0 && sortedPaths.values[0].tail.name !== endNode) {
+
     let currentNode =  sortedPaths.values[0].tail.name;
-    let nodeConnections = graph.nodes[currentNode].outgoingConnections;
+
+    let nodeConnections = graph?.nodes[currentNode]?.outgoingConnections
+    ? graph.nodes[currentNode].outgoingConnections
+    : {};
+
     for (let i in nodeConnections) {
       if (!sortedPaths.values[0].contains(i)) {
         let newPath = cloneLinkedList(sortedPaths.values[0]);
