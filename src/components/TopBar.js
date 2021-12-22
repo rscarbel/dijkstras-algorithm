@@ -38,12 +38,6 @@ const selectButton = {
   borderColor: '#28a745',
 }
 
-const findPathButton = {
-  ...buttonStyles,
-  backgroundColor: '#28a745',
-  borderColor: '#28a745',
-}
-
 const textStyle = {
   margin: '0 2em',
   textAlign: 'left',
