@@ -44,7 +44,7 @@ const Node = ({
         selectStartNode(name);
       } else {
         selectEndNode(name);
-        toggleSelectionMode();
+        toggleSelectionMode(startNode,name);
       }
     }
   }
