@@ -1,5 +1,4 @@
 const componentStyle = {
-  height: '100px',
   width: 'fit-content',
   display: 'flex',
   justifyContent: 'center',
