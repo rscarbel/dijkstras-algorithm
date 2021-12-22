@@ -65,7 +65,7 @@ const TopBar = ({
       <p>End Node: {endNode}</p>
     </div>
 
-    <p style={textStyle}>Path: {path}</p>
+    <p style={textStyle}>Path: {path ? path.print().join(' --> ') : 'No Path Exists'}</p>
 
   </div>
 }

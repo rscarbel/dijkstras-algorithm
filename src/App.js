@@ -35,7 +35,7 @@ function App() {
     setEndNode(keys[keys.length - 1])
 
     shortestPath = DijkstrasAlorithm(graph,keys[0],keys[keys.length - 1]);
-    setPath(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists');
+    setPath(shortestPath[0]);
   }
 
 
@@ -53,7 +53,7 @@ function App() {
   const selectEndNode = (newNode) => {
     setEndNode(newNode);
     shortestPath = DijkstrasAlorithm(graph,startNode,newNode);
-      setPath(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists');
+      setPath(shortestPath[0]);
   }
 
   const [selectionMode, setSelectionMode] = useState(false);
@@ -80,7 +80,7 @@ function App() {
     }
   }
 
-  const [path, setPath] = useState(shortestPath[0] ? shortestPath[0].print().join(' --> ') : 'No Path Exists')
+  const [path, setPath] = useState(shortestPath[0])
 
   return (
     <div className="App">
@@ -95,6 +95,7 @@ function App() {
 
       <GraphDisplay
         displayedGraph={graph}
+        path={path}
         verticalLocations={verticalCoordinates}
         horizontalLocations={horizontalCoordinates}
         selectionMode={selectionMode}

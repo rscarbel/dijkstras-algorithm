@@ -10,8 +10,11 @@ const GraphDisplay = ({
   selectStartNode,
   selectEndNode,
   endNode,
-  startNode
+  startNode,
+  path
   }) => {
+
+  let solutionArray = path ? path.print() : [];
 
   let nodes = Object.keys(displayedGraph.nodes);
 
@@ -62,9 +65,20 @@ const GraphDisplay = ({
             //finally, make sure the connection doesn't have a weight of 0
             if (lines.every(j => (j.key !== (`${startingX},${endingX}`)) && (j.key !== (`${endingX},${startingX}`))) && weight) {
 
+              let isPartOfPath = false;
+
+              if (solutionArray.indexOf(e.props.name) !== -1) {
+                if (solutionArray[solutionArray.indexOf(e.props.name) + 1] === i ||
+                solutionArray[solutionArray.indexOf(e.props.name) - 1] === i ) {
+                  isPartOfPath = true;
+                }
+              }
+
               lines.push(<Line
                 key={`${startingX},${endingX}`}
+                selectionMode={selectionMode}
                 startingX={startingX}
+                isPartOfPath={isPartOfPath}
                 startingY={startingY}
                 endingX={endingX}
                 endingY={endingY}

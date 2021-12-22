@@ -1,4 +1,13 @@
-const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
+const Line = ({startingX,
+    startingY,
+    endingX,
+    endingY,
+    width,
+    weight,
+    isPartOfPath,
+    selectionMode
+  }) => {
+
   let rgbVal = width * 36;
   const svgStyle = {
     position: 'absolute',
@@ -27,8 +36,8 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
       <line
       style={lineStyle}
       fill="none"
-      stroke={`rgb(${rgbVal},0,0)`}
-      strokeWidth={width}
+      stroke={isPartOfPath && !selectionMode ? '#6CA644' : `rgb(${rgbVal},0,0)`}
+      strokeWidth={isPartOfPath && !selectionMode ? '8px' : width}
       x1={startingX}
       y1={startingY}
       x2={endingX}
@@ -42,7 +51,7 @@ const Line = ({startingX, startingY, endingX, endingY, width, weight }) => {
       cx={(endingX + startingX)/2}
       cy={(endingY + startingY)/2}
       r='12px'
-      fill={`rgb(${rgbVal},0,0)`}
+      fill={isPartOfPath && !selectionMode ? '#6CA644' : `rgb(${rgbVal},0,0)`}
       stroke='#000000'/>
 
       <text
