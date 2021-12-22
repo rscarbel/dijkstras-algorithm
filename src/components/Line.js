@@ -29,13 +29,16 @@ const Line = ({startingX,
   }
   return<>
     <svg
+    className='line'
     style={svgStyle}
-    width='100%'
-    height='100%'>
+    width={`${endingX + 7}px`}
+    height={endingY > startingY ?
+      `${endingY + 7}px`
+    : `${startingY + 7}px`}>
 
       <line
       style={lineStyle}
-      fill="none"
+      fill='none'
       stroke={isPartOfPath && !selectionMode ? '#6CA644' : `rgb(${rgbVal},0,0)`}
       strokeWidth={isPartOfPath && !selectionMode ? '8px' : width}
       x1={startingX}
@@ -44,8 +47,15 @@ const Line = ({startingX,
       y2={endingY} />
 
 
-      </svg>
-      {width ? <svg style={circleStyle} width='100%' height='100%'>
+      </svg >
+      {width ? <svg
+      className='line'
+      style={circleStyle}
+      width={`${endingX + 11}px`}
+      height={endingY > startingY ?
+      `${endingY + 11}px`
+      : `${startingY + 11}px`}
+      >
       <circle
       style={circleStyle}
       cx={(endingX + startingX)/2}
