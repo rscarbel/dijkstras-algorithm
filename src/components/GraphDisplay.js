@@ -5,8 +5,7 @@ const GraphDisplay = ({
   verticalLocations,
   horizontalLocations,
   displayedGraph,
-  selectionMode,
-  toggleSelectionMode,
+  clearSelections,
   selectStartNode,
   selectEndNode,
   endNode,
@@ -27,8 +26,7 @@ const GraphDisplay = ({
     {nodes.forEach(e => {
 
       domNodes.push(<Node
-        selectionMode={selectionMode}
-        toggleSelectionMode={toggleSelectionMode}
+        clearSelections={clearSelections}
         selectStartNode={selectStartNode}
         selectEndNode={selectEndNode}
         endNode={endNode}
@@ -76,7 +74,6 @@ const GraphDisplay = ({
 
               lines.push(<Line
                 key={`${startingX},${endingX}`}
-                selectionMode={selectionMode}
                 startingX={startingX}
                 isPartOfPath={isPartOfPath}
                 startingY={startingY}

@@ -5,7 +5,6 @@ const Line = ({startingX,
     width,
     weight,
     isPartOfPath,
-    selectionMode
   }) => {
 
   let rgbVal = width * 36;
@@ -39,8 +38,8 @@ const Line = ({startingX,
       <line
       style={lineStyle}
       fill='none'
-      stroke={isPartOfPath && !selectionMode ? '#6CA644' : `rgb(${rgbVal},0,0)`}
-      strokeWidth={isPartOfPath && !selectionMode ? '8px' : width}
+      stroke={isPartOfPath ? '#6CA644' : `rgb(${rgbVal},0,0)`}
+      strokeWidth={isPartOfPath ? '8px' : width}
       x1={startingX}
       y1={startingY}
       x2={endingX}
@@ -61,7 +60,7 @@ const Line = ({startingX,
       cx={(endingX + startingX)/2}
       cy={(endingY + startingY)/2}
       r='12px'
-      fill={isPartOfPath && !selectionMode ? '#6CA644' : `rgb(${rgbVal},0,0)`}
+      fill={isPartOfPath ? '#6CA644' : `rgb(${rgbVal},0,0)`}
       stroke='#000000'/>
 
       <text

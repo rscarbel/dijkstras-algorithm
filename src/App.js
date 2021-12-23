@@ -8,14 +8,15 @@ import verticalLocations from './scripts/verticalLocations';
 import horizontalLocations from './scripts/horizontalLocations';
 
 let graph = randomGraph();
+let fullPath = []
 
 function App() {
   let nodeAmount = Object.keys(graph.nodes).length
 
   const reloadGraph = () => {
     graph = randomGraph();
+    fullPath = []
     nodeAmount = Object.keys(graph.nodes).length;
-    setSelectionMode(false)
 
     generateVerticalCoordinates(nodeAmount);
     generateHorizontalCoordinates(nodeAmount);
@@ -23,10 +24,8 @@ function App() {
   };
 
   const newPathing = () => {
-
     setStartNode('')
     setEndNode('')
-
     shortestPath = DijkstrasAlorithm(graph,'','');
     setPath(null);
   }
@@ -49,8 +48,6 @@ function App() {
       setPath(shortestPath[0]);
   }
 
-  const [selectionMode, setSelectionMode] = useState(false);
-
   const [verticalCoordinates, setVerticalCoordinates] = useState(verticalLocations(nodeAmount));
 
   const generateVerticalCoordinates = () => {
@@ -64,13 +61,11 @@ function App() {
     setHorizontalCoordinates(horizontalLocations(nodeAmount))
   };
 
-  const toggleSelectionMode = (start,end) => {
-    setSelectionMode(!selectionMode);
-    if (!selectionMode) {
-      setPath('')
-      setStartNode('');
-      setEndNode('');
-    }
+  const clearSelections = (start,end) => {
+    fullPath = []
+    setPath('')
+    setStartNode('');
+    setEndNode('');
   }
 
   const [path, setPath] = useState(null)
@@ -79,8 +74,7 @@ function App() {
     <div className="App">
       <TopBar
         startNode={startNode}
-        selectionMode={selectionMode}
-        toggleSelectionMode={toggleSelectionMode}
+        clearSelections={clearSelections}
         endNode={endNode}
         path={path}
         reloadAction={reloadGraph}
@@ -91,8 +85,7 @@ function App() {
         path={path}
         verticalLocations={verticalCoordinates}
         horizontalLocations={horizontalCoordinates}
-        selectionMode={selectionMode}
-        toggleSelectionMode={toggleSelectionMode}
+        clearSelections={clearSelections}
         startNode={startNode}
         endNode={endNode}
         selectStartNode={selectStartNode}

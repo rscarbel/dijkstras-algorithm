@@ -2,8 +2,7 @@ const Node = ({
   name,
   x,
   y,
-  selectionMode,
-  toggleSelectionMode,
+  clearSelections,
   selectStartNode,
   selectEndNode,
   startNode,
@@ -39,12 +38,11 @@ const Node = ({
   }
 
   const applyNodeSelection = () => {
-    if (selectionMode) {
+    if (true) {
       if (!startNode) {
         selectStartNode(name);
       } else {
         selectEndNode(name);
-        toggleSelectionMode(startNode,name);
       }
     }
   }

@@ -49,8 +49,7 @@ const TopBar = ({
   startNode,
   endNode,
   path,
-  toggleSelectionMode,
-  selectionMode
+  clearSelections,
   }) => {
 
   return <div style={componentStyle}>
@@ -59,7 +58,7 @@ const TopBar = ({
     <div style={{display:'flex',flexWrap:'wrap',flexDirection: 'column',alignContent: 'space-around', justifyContent: 'space-around'}}>
       <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
 
-      <button onClick={!selectionMode ? toggleSelectionMode : () => ''} style={selectButton}>Select Nodes</button>
+      <button onClick={true ? clearSelections : () => ''} style={selectButton}>Clear Selections</button>
     </div>
 
     <div style={textStyle}>
