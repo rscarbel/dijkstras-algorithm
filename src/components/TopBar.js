@@ -9,8 +9,7 @@ const componentStyle = {
 }
 
 const h1Style = {
-  fontSize: '2.5em',
-  margin: '0 1.3em',
+  fontSize: '2em',
   zIndex: '999',
 }
 
@@ -53,11 +52,12 @@ const TopBar = ({
   }) => {
 
   return <div style={componentStyle}>
-
+    <div style={{margin: '0 1.3em'}}>
     <h1 style={h1Style}>Dijkstra's<br />Algorithm</h1>
+      <p>Just click nodes to get started!</p>
+    </div>
     <div style={{display:'flex',flexWrap:'wrap',flexDirection: 'column',alignContent: 'space-around', justifyContent: 'space-around'}}>
       <button onClick={reloadAction} style={newGraphButton}>New Graph</button>
-
       <button onClick={true ? clearSelections : () => ''} style={selectButton}>Clear Selections</button>
     </div>
 
