@@ -8,14 +8,14 @@ import verticalLocations from './scripts/verticalLocations';
 import horizontalLocations from './scripts/horizontalLocations';
 
 let graph = randomGraph();
-let fullPath = []
+// let fullPath = []
 
 function App() {
   let nodeAmount = Object.keys(graph.nodes).length
 
   const reloadGraph = () => {
     graph = randomGraph();
-    fullPath = []
+    // fullPath = []
     nodeAmount = Object.keys(graph.nodes).length;
 
     generateVerticalCoordinates(nodeAmount);
@@ -62,7 +62,7 @@ function App() {
   };
 
   const clearSelections = (start,end) => {
-    fullPath = []
+    // fullPath = []
     setPath('')
     setStartNode('');
     setEndNode('');
