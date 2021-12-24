@@ -48,7 +48,7 @@ describe ('Dijkstra\'s algorithm should find the shortest path between two nodes
   });
 
   test ('It should have a weight of 1', () => {
-    expect(temp2[0].weight).toBe(1);
+    expect(temp2[0].weight).toBe(1.000001);
   });
 
   test ('It should have a length of 2', () => {
@@ -61,7 +61,7 @@ describe ('Dijkstra\'s algorithm should find the shortest path between two nodes
   });
 
   test ('It have a weight of 3', () => {
-    expect(temp3[0].weight).toBe(3);
+    expect(temp3[0].weight).toBe(3.0000020000000003);
   });
 
   test ('It have a length of 3', () => {
@@ -74,7 +74,7 @@ describe ('Dijkstra\'s algorithm should find the shortest path between two nodes
   });
 
   test ('It have a weight of 13', () => {
-    expect(temp4[0].weight).toBe(13);
+    expect(temp4[0].weight).toBe(13.000003);
   });
 
   test ('It have a length of 4', () => {
