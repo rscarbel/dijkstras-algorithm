@@ -71,7 +71,7 @@ const textStyle = {
 
     <p style={{...textStyle, flexGrow: 5, height: '100%', textWrap: 'wrap'}}><strong>Path:</strong> {path ? path.print().join(' -> ') : 'No Path Exists'}</p>
     <div style={{flexGrow: 1}}>
-      <p style={{marginRight: '5px',textAlign:'left'}}><strong>Total weight</strong><br />{path?.length ? path.weight : 'n/a'}</p>
+      <p style={{marginRight: '5px',textAlign:'left'}}><strong>Total weight</strong><br />{path?.length ? Math.floor(path.weight) : 'n/a'}</p>
       <br />
       <p style={{marginRight: '5px',textAlign:'left'}}><strong>Number of paths</strong><br />{path?.length ? path.length - 1 : 'n/a'}</p>
     </div>
