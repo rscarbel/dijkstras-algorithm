@@ -24,22 +24,31 @@ const DijkstrasAlorithm = (graph, startNode, endNode) => {
 
   while (sortedPaths.values.length > 0 && sortedPaths.values[0].tail.name !== endNode) {
 
+    //current node is always the smallest linked list
+    //smallest meaning it has the lowest weight
     let currentNode =  sortedPaths.values[0].tail.name;
 
+    //check for connections before making the assignment, otherwise it will throw an error
     let nodeConnections = graph?.nodes[currentNode]?.outgoingConnections
     ? graph.nodes[currentNode].outgoingConnections
     : {};
 
+    //look though each outgoing connection to make linked lists for new paths
     for (let i in nodeConnections) {
+      //need to check if the path is already in the route
       if (!sortedPaths.values[0].contains(i)) {
+        //each path gets a new linked list
         let newPath = cloneLinkedList(sortedPaths.values[0]);
+        //I add a millionth to each weight so that when more than one possible route is present, it will prefer the one with fewer connections.
         newPath.addNode(i, nodeConnections[i] + 0.000001);
         sortedPaths.insert(newPath)
       }
     }
+    //the shortest path in the list is going to be the one we just looked at all the outgoing connections for, so let's get rid of the path to keep progressing though the graph.
     sortedPaths.extract()
     }
 
+    //If no path was found, then the first path was extracted, meaning there's no length to the linked list, so check for a length first, and if there isn't one, there isn't a path.
     return sortedPaths.values.length ? sortedPaths.values : noPath;
 };
 
