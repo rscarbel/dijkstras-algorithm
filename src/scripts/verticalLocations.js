@@ -17,7 +17,7 @@ const verticalLocations = (nodeAmount) => {
   ? height / 5
   : 100;
 
-  for (let i = 99; i > 0; i--) {
+  for (let i = nodeAmount + 1; i > 0; i--) {
     let verticalChange = generateNumber(distanceToWindowEdge/2, minimumVerticalChange)
     //keep nodes from being created above the top of the page
     if ((yCoordinate - verticalChange) < 100) {

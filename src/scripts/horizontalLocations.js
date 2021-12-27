@@ -8,7 +8,7 @@ const horizontalLocations = (nodeAmount) => {
 
   let xCoordinate = 0;
 
-  for (let i = 99; i > 0; i--) {
+  for (let i = nodeAmount + 1; i > 0; i--) {
     xCoordinate += generateNumber(horizontalSpacing,100);
     values.push(xCoordinate)
   }
