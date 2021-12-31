@@ -53,9 +53,9 @@ const randomGraph = () => {
    *
    * @returns {Array} List of names for nodes
    */
-  const selectRandomIndices = (max,min,array) => {
+  const selectRandomIndices = (min,array) => {
     const newArr = [];
-    for (let i = 0; i < generateNumber(max,min); i++) {
+    for (let i = 0; i < generateNumber(array.length - 2,min); i++) {
       newArr.push(array[i])
     };
     return newArr;
@@ -63,7 +63,7 @@ const randomGraph = () => {
 
   shuffleArray(graphLetters);
 
-  const nodeNames = selectRandomIndices(22,10,graphLetters);
+  const nodeNames = selectRandomIndices(10,graphLetters);
 
   const generatedGraph = new Graph(nodeNames[0]);
 
