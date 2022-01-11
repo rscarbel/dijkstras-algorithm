@@ -34,10 +34,7 @@ const DijkstrasAlorithm = (
 
   const foundNodes = [startNode];
 
-  while (
-    sortedPaths.values.length > 0 &&
-    sortedPaths.values[0].tail.name !== endNode
-  ) {
+  while (sortedPaths.values[0].tail.name !== endNode) {
     //current node is always the smallest linked list
     //smallest meaning it has the lowest weight
     let currentNode = sortedPaths.values[0].tail.name;
