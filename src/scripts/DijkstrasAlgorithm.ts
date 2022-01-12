@@ -35,8 +35,7 @@ const DijkstrasAlorithm = (
   const foundNodes = [startNode];
 
   while (sortedPaths.values[0].tail.name !== endNode) {
-    //current node is always the smallest linked list
-    //smallest meaning it has the lowest weight
+    //current node is always assigned to the last node in the linked list with the lowest weight
     let currentNode = sortedPaths.values[0].tail.name;
 
     //check for connections before making the assignment, otherwise it will throw an error
@@ -50,17 +49,10 @@ const DijkstrasAlorithm = (
       if (!sortedPaths.values[0].contains(i) && foundNodes.indexOf(i) === -1) {
         //each path gets a new linked list
         let newPath = cloneLinkedList(sortedPaths.values[0]);
-        //I add a millionth to each weight so that when more than one possible route is present, it will prefer the one with fewer connections.
         newPath.addNode(i, nodeConnections[i] + extraWeight);
         sortedPaths.insert(newPath);
       }
     }
-    // //remove slower paths that included found nodes
-    // for (let i = 64; i < sortedPaths.values.length; i++) {
-    //   if (foundNodes.indexOf(sortedPaths.values[i].tail.name) !== -1) {
-    //     sortedPaths.values.splice(i, 1);
-    //   }
-    // }
     //the shortest path in the list is going to be the one we just looked at all the outgoing connections for, so let's get rid of the path to keep progressing though the graph.
     foundNodes.push(sortedPaths.extract()?.tail.name);
     foundNodes.push(sortedPaths.values[0]?.tail.name);
