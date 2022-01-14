@@ -82,18 +82,15 @@ class DoublyLinkedList {
     if (!this.head) {
       return false;
     }
-    const checkForItem: (node: string, name: string) => boolean = (
-      node: any
-    ) => {
-      if (node.name === name) {
+    let currentNode = this.head;
+    while (true) {
+      if (currentNode.name === name) {
         return true;
+      } else if (currentNode === this.tail) {
+        return false;
       }
-      if (node.next) {
-        return checkForItem(node.next, name);
-      }
-      return false;
-    };
-    return checkForItem(this.head, name);
+      currentNode = currentNode.next;
+    }
   }
 
   print() {
