@@ -119,18 +119,28 @@ describe('no path exists leaving starting node', () => {
 
 const graphStart = performance.now();
 let performanceGraph = new Graph('1');
-const numOfNodes = 10000;
+const numOfNodes = 1000000;
 for (let i = 2; i <= numOfNodes; i++) {
   performanceGraph.addNode(`${i}`);
 }
+//guarantee each node has at least one connection
 for (let i = 1; i < numOfNodes; i++) {
   performanceGraph.addConnection(`${i}`, `${i + 1}`, generateNumber(0, 4));
 }
-for (let i = 1; i < numOfNodes - 1; i++) {
-  performanceGraph.addConnection(`${i}`, `${i + 2}`, generateNumber(0, 4));
-}
-for (let i = 1; i < numOfNodes - 2; i++) {
-  performanceGraph.addConnection(`${i}`, `${i + 3}`, generateNumber(0, 4));
+//make random connections
+for (let i = 1; i < numOfNodes - 4; i++) {
+  let firstEndNode = generateNumber(i + 1, i + (numOfNodes - i));
+  let secondEndNode = generateNumber(i + 1, i + (numOfNodes - i));
+  performanceGraph.addConnection(
+    `${i}`,
+    `${firstEndNode}`,
+    generateNumber(0, 4)
+  );
+  performanceGraph.addConnection(
+    `${i}`,
+    `${secondEndNode}`,
+    generateNumber(0, 4)
+  );
 }
 const graphEnd = performance.now();
 console.log(`Generating the graph took ${graphEnd - graphStart} milliseconds`);
