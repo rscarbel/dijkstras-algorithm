@@ -2,7 +2,7 @@ import GraphDisplay from './components/GraphDisplay';
 import './App.css';
 import TopBar from './components/TopBar';
 import { useState } from 'react';
-import DijkstrasAlorithm from './scripts/DijkstrasAlgorithm';
+import dijkstrasAlgorithm from './scripts/dijkstrasAlorithm';
 import randomGraph from './scripts/randomGraph';
 import verticalLocations from './scripts/verticalLocations';
 import horizontalLocations from './scripts/horizontalLocations';
@@ -24,11 +24,11 @@ function App() {
   const newPathing = () => {
     setStartNode('');
     setEndNode('');
-    shortestPath = DijkstrasAlorithm(graph, '', '');
+    shortestPath = dijkstrasAlgorithm(graph, '', '');
     setPath(null);
   };
 
-  let shortestPath: any = DijkstrasAlorithm(graph, '', '');
+  let shortestPath: any = dijkstrasAlgorithm(graph, '', '');
 
   const [startNode, setStartNode] = useState('');
 
@@ -40,7 +40,7 @@ function App() {
 
   const selectEndNode = (newNode: string) => {
     setEndNode(newNode);
-    shortestPath = DijkstrasAlorithm(graph, startNode, newNode);
+    shortestPath = dijkstrasAlgorithm(graph, startNode, newNode);
     setPath(shortestPath[0]);
   };
 

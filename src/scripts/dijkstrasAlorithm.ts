@@ -9,7 +9,7 @@ import MinBinaryHeap from '../dataStructures/MinBinaryHeap';
  * @param {String} endNode
  * @returns {DoublyLinkedList} Path from start node to end node
  */
-const DijkstrasAlorithm = (
+const dijkstrasAlgorithm = (
   graph: any,
   startNode: string,
   endNode: string,
@@ -68,4 +68,4 @@ const DijkstrasAlorithm = (
   return sortedPaths.values.length ? sortedPaths.values : noPath;
 };
 
-export default DijkstrasAlorithm;
+export default dijkstrasAlgorithm;

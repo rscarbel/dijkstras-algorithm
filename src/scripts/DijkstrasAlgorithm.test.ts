@@ -1,4 +1,4 @@
-import DijkstrasAlorithm from './DijkstrasAlgorithm';
+import dijkstrasAlgorithm from './dijkstrasAlorithm';
 import Graph from '../dataStructures/graph';
 import DoublyLinkedList from '../dataStructures/DoublyLinkedList';
 import { performance } from 'perf_hooks';
@@ -26,7 +26,7 @@ exampleGraph.addConnection('E', 'D', 4);
 exampleGraph.addConnection('G', 'D', 10);
 
 describe("Dijkstra's algorithm should return a binary heap of doubly linked lists", () => {
-  let temp: any = DijkstrasAlorithm(exampleGraph, 'A', 'A');
+  let temp: any = dijkstrasAlgorithm(exampleGraph, 'A', 'A');
   test('it should be a doubly linked list', () => {
     expect(temp[0]).toBeInstanceOf(DoublyLinkedList);
   });
@@ -41,12 +41,12 @@ describe("Dijkstra's algorithm should return a binary heap of doubly linked list
 });
 
 describe("Dijkstra's algorithm should find the shortest path between two nodes", () => {
-  let temp: any = DijkstrasAlorithm(exampleGraph, 'A', 'A');
+  let temp: any = dijkstrasAlgorithm(exampleGraph, 'A', 'A');
   test("It should be ['A']", () => {
     expect(temp[0].print()).toStrictEqual(['A']);
   });
 
-  let temp2: any = DijkstrasAlorithm(exampleGraph, 'A', 'B');
+  let temp2: any = dijkstrasAlgorithm(exampleGraph, 'A', 'B');
   test("It should be ['A','B']", () => {
     expect(temp2[0].print()).toStrictEqual(['A', 'B']);
   });
@@ -59,7 +59,7 @@ describe("Dijkstra's algorithm should find the shortest path between two nodes",
     expect(temp2[0].length).toBe(2);
   });
 
-  let temp3: any = DijkstrasAlorithm(exampleGraph, 'A', 'D');
+  let temp3: any = dijkstrasAlgorithm(exampleGraph, 'A', 'D');
   test("It should be ['A','C','D']", () => {
     expect(temp3[0].print()).toStrictEqual(['A', 'C', 'D']);
   });
@@ -72,7 +72,7 @@ describe("Dijkstra's algorithm should find the shortest path between two nodes",
     expect(temp3[0].length).toBe(3);
   });
 
-  let temp4: any = DijkstrasAlorithm(exampleGraph, 'A', 'G');
+  let temp4: any = dijkstrasAlgorithm(exampleGraph, 'A', 'G');
   test("It should be ['A','C','D','G']", () => {
     expect(temp4[0].print()).toStrictEqual(['A', 'C', 'D', 'G']);
   });
@@ -87,7 +87,7 @@ describe("Dijkstra's algorithm should find the shortest path between two nodes",
 });
 
 describe('handelers no path exists to ending node', () => {
-  let temp: any = DijkstrasAlorithm(exampleGraph, 'A', 'Z');
+  let temp: any = dijkstrasAlgorithm(exampleGraph, 'A', 'Z');
   test('The length should be infinite', () => {
     expect(temp.length).toBe(Infinity);
   });
@@ -102,7 +102,7 @@ describe('handelers no path exists to ending node', () => {
 });
 
 describe('no path exists leaving starting node', () => {
-  let temp2: any = DijkstrasAlorithm(exampleGraph, 'Z', 'H');
+  let temp2: any = dijkstrasAlgorithm(exampleGraph, 'Z', 'H');
 
   test('The length should be infinite', () => {
     expect(temp2.length).toBe(Infinity);
@@ -145,7 +145,7 @@ for (let i = 1; i < numOfNodes - 4; i++) {
 const graphEnd = performance.now();
 console.log(`Generating the graph took ${graphEnd - graphStart} milliseconds`);
 const startTime = performance.now();
-const performAlgo: any = DijkstrasAlorithm(
+const performAlgo: any = dijkstrasAlgorithm(
   performanceGraph,
   '1',
   `${numOfNodes}`,
