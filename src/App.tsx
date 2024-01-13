@@ -2,7 +2,7 @@ import GraphDisplay from './components/GraphDisplay';
 import './App.css';
 import TopBar from './components/TopBar';
 import { useState } from 'react';
-import dijkstrasAlgorithm from './scripts/dijkstrasAlorithm';
+import dijkstrasAlgorithm from './scripts/dijkstrasAlgorithm';
 import randomGraph from './scripts/randomGraph';
 import verticalLocations from './scripts/verticalLocations';
 import horizontalLocations from './scripts/horizontalLocations';

@@ -1,4 +1,4 @@
-import dijkstrasAlgorithm from './dijkstrasAlorithm';
+import dijkstrasAlgorithm from './dijkstrasAlgorithm';
 import Graph from '../dataStructures/graph';
 import DoublyLinkedList from '../dataStructures/DoublyLinkedList';
 import { performance } from 'perf_hooks';
