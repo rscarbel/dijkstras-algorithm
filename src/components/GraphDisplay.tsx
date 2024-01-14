@@ -1,17 +1,20 @@
 import Node from './Node';
 import Line from './Line';
 import React from 'react';
+import Graph from '../dataStructures/graph';
+
+const NODE_RADIUS_PX = 40;
 
 interface GraphDisplayProps {
   verticalLocations: any;
   horizontalLocations: any;
-  displayedGraph: any;
+  displayedGraph: Graph;
   clearSelections: Function;
   selectStartNode: Function;
   selectEndNode: Function;
   endNode: string;
   startNode: string;
-  path: any;
+  path: string[];
 }
 
 const GraphDisplay: React.FC<GraphDisplayProps> = ({
@@ -25,7 +28,7 @@ const GraphDisplay: React.FC<GraphDisplayProps> = ({
   startNode,
   path,
 }) => {
-  let solutionArray = path ? path.print() : [];
+  let solutionArray = path;
 
   let nodes = Object.keys(displayedGraph.nodes);
 
@@ -59,19 +62,18 @@ const GraphDisplay: React.FC<GraphDisplayProps> = ({
       {/* Now to add the connecting lines */}
       {domNodes.forEach((e) => {
         const connectedNodes = Object.keys(
-          displayedGraph.nodes[e.props.name].outgoingConnections
+          displayedGraph.nodes[e.props.name].connections
         );
-        //I added 40 to the starting x & y values to place it in the center of the circle
-        let startingX = parseInt(e.props.x) + 40;
-        let startingY = parseInt(e.props.y) + 40;
+        let startingX = parseInt(e.props.x) + NODE_RADIUS_PX;
+        let startingY = parseInt(e.props.y) + NODE_RADIUS_PX;
 
         connectedNodes.forEach((i) => {
           const weight =
-            displayedGraph.nodes[e.props.name].outgoingConnections[i];
+            displayedGraph.nodes[e.props.name].connections[i].weight;
 
-          let endingX = parseInt(domNodesByKey[i].x) + 40;
+          let endingX = parseInt(domNodesByKey[i].x) + NODE_RADIUS_PX;
 
-          let endingY = parseInt(domNodesByKey[i].y) + 40;
+          let endingY = parseInt(domNodesByKey[i].y) + NODE_RADIUS_PX;
 
           //Check if the key is aready there
           //then check to see if a line has already been drawn in the reverse direction
@@ -104,7 +106,7 @@ const GraphDisplay: React.FC<GraphDisplayProps> = ({
                 endingX={endingX}
                 endingY={endingY}
                 weight={weight}
-                width={parseInt(weight) ** 1.1}
+                width={weight ** 1.1}
               />
             );
           }

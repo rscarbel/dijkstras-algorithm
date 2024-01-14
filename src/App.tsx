@@ -2,7 +2,9 @@ import GraphDisplay from './components/GraphDisplay';
 import './App.css';
 import TopBar from './components/TopBar';
 import { useState } from 'react';
-import dijkstrasAlgorithm from './scripts/dijkstrasAlgorithm';
+import dijkstrasAlgorithm, {
+  PathInterface,
+} from './scripts/dijkstrasAlgorithm';
 import randomGraph from './scripts/randomGraph';
 import verticalLocations from './scripts/verticalLocations';
 import horizontalLocations from './scripts/horizontalLocations';
@@ -11,6 +13,11 @@ let graph = randomGraph();
 
 function App() {
   let nodeAmount: number = Object.keys(graph.nodes).length;
+  let shortestPath: PathInterface = dijkstrasAlgorithm(graph, '', '');
+  const [startNode, setStartNode] = useState('');
+  const [endNode, setEndNode] = useState('');
+  const [path, setPath] = useState<string[]>([]);
+  const [totalWeight, setTotalWeight] = useState(0);
 
   const reloadGraph = () => {
     graph = randomGraph();
@@ -25,23 +32,19 @@ function App() {
     setStartNode('');
     setEndNode('');
     shortestPath = dijkstrasAlgorithm(graph, '', '');
-    setPath(null);
+    setPath([]);
+    setTotalWeight(0);
   };
-
-  let shortestPath: any = dijkstrasAlgorithm(graph, '', '');
-
-  const [startNode, setStartNode] = useState('');
 
   const selectStartNode = (newNode: string) => {
     setStartNode(newNode);
   };
 
-  const [endNode, setEndNode] = useState('');
-
   const selectEndNode = (newNode: string) => {
     setEndNode(newNode);
     shortestPath = dijkstrasAlgorithm(graph, startNode, newNode);
-    setPath(shortestPath[0]);
+    setTotalWeight(shortestPath.totalWeight);
+    setPath(shortestPath.path);
   };
 
   const [verticalCoordinates, setVerticalCoordinates] = useState(
@@ -61,12 +64,11 @@ function App() {
   };
 
   const clearSelections = (start: string, end: string) => {
-    setPath(null);
+    setPath([]);
+    setTotalWeight(0);
     setStartNode('');
     setEndNode('');
   };
-
-  const [path, setPath] = useState(null);
 
   return (
     <div className="App">
@@ -76,6 +78,7 @@ function App() {
         endNode={endNode}
         path={path}
         reloadAction={reloadGraph}
+        totalWeight={totalWeight}
       />
 
       <GraphDisplay

@@ -1,6 +1,7 @@
-import generateWeight from './generateWeight';
 import Graph from '../dataStructures/graph';
-// import addRandomConnections from './addRandomConnections';
+import addRandomConnections from './addRandomConnections';
+
+const MINIMUM_NODES = 10;
 
 const cities = [
   'Aberdeen',
@@ -239,129 +240,55 @@ const runescapeCities = [
   'Hosidius',
 ];
 
-const randomGraph = () => {
-  let generateNumber: (max: number, min: number) => number = (max, min) =>
-    Math.ceil(Math.random() * (max - min + 1) + min);
+const shuffleArray = (array: string[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+};
 
+const generateCeilingNumber: (max: number, min: number) => number = (
+  max,
+  min
+) => Math.ceil(Math.random() * (max - min + 1) + min);
+
+const generateFloorNumber = (max: number, min: number) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomGraph = () => {
   const chooseNodeNames = () => {
     let nodeNames: string[] = [];
-    let choice = generateNumber(4, 0);
+    let choice = generateCeilingNumber(4, 0);
     if (choice === 1) {
-      nodeNames = [...cities];
+      nodeNames = cities;
     } else if (choice === 2) {
-      nodeNames = [...letters];
+      nodeNames = letters;
     } else if (choice === 3) {
-      nodeNames = [...middleEarthCities];
+      nodeNames = middleEarthCities;
     } else if (choice === 4) {
-      nodeNames = [...starWarsPlanets];
+      nodeNames = starWarsPlanets;
     } else if (choice === 5) {
-      nodeNames = [...runescapeCities];
+      nodeNames = runescapeCities;
     }
     return nodeNames;
   };
 
   const graphLetters = chooseNodeNames();
-
-  const shuffleArray = (array: string[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  };
-
-  /**
-   * @description Function produce array of node names
-   * @param {Number} max value for highest possible array length
-   * @param {Number} min value for lowest possible array length
-   * @param {Array} array source for values in new array
-   *
-   * @returns {Array} List of names for nodes
-   */
-  const selectRandomIndices = (min: number, array: string[]) => {
-    const newArr = [];
-    for (let i = 0; i < generateNumber(array.length - 2, min); i++) {
-      newArr.push(array[i]);
-    }
-    return newArr;
-  };
-
   shuffleArray(graphLetters);
+  const numLettersToRemove = generateFloorNumber(
+    graphLetters.length - MINIMUM_NODES,
+    0
+  );
+  graphLetters.splice(0, numLettersToRemove);
 
-  const nodeNames = selectRandomIndices(10, graphLetters);
+  const graph = new Graph(graphLetters[0]);
 
-  const generatedGraph = new Graph(nodeNames[0]);
-
-  for (let i = 1; i < nodeNames.length; i++) {
-    generatedGraph.addNode(nodeNames[i]);
+  for (let i = 1; i < graphLetters.length; i++) {
+    graph.addNode(graphLetters[i]);
   }
 
-  generateNumber = (max, min) =>
-    Math.floor(Math.random() * (max - min + 1) + min);
-
-  /**
-   *
-   * @param {Graph} graph graph to call addConnection method
-   * @param {Array} sourceArray node names in the graph
-   */
-  const addRandomConnections = (graph: any, sourceArray: string[]) => {
-    //80% chance of having connection to adjecent node
-    for (let i = 0; i < sourceArray.length - 1; i++) {
-      if (generateNumber(5, 0)) {
-        graph.addConnection(
-          sourceArray[i],
-          sourceArray[i + 1],
-          generateWeight()
-        );
-      }
-    }
-
-    //80% chance of having connection to index two to the left
-    for (let i = 2; i < sourceArray.length; i++) {
-      if (generateNumber(5, 0)) {
-        graph.addConnection(
-          sourceArray[i],
-          sourceArray[i - 2],
-          generateWeight()
-        );
-      }
-    }
-
-    //20% chance of having connection to index three to the left
-    for (let i = 3; i < sourceArray.length; i++) {
-      if (!generateNumber(5, 0)) {
-        graph.addConnection(
-          sourceArray[i],
-          sourceArray[i - 3],
-          generateWeight()
-        );
-      }
-    }
-
-    //10% chance of having connection to index four to the left
-    for (let i = 4; i < sourceArray.length; i++) {
-      if (!generateNumber(10, 0)) {
-        graph.addConnection(
-          sourceArray[i],
-          sourceArray[i - 4],
-          generateWeight()
-        );
-      }
-    }
-
-    //1% chance of having connection to index five to the left
-    for (let i = 5; i < sourceArray.length; i++) {
-      if (!generateNumber(100, 0)) {
-        graph.addConnection(
-          sourceArray[i],
-          sourceArray[i - 5],
-          generateWeight()
-        );
-      }
-    }
-  };
-
-  addRandomConnections(generatedGraph, nodeNames);
-  return generatedGraph;
+  addRandomConnections(graph, graphLetters);
+  return graph;
 };
 
 export default randomGraph;

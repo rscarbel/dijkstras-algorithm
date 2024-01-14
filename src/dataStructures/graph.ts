@@ -1,102 +1,68 @@
+import { GraphNode } from './GraphNode';
+
+interface Graph {
+  nodes: {
+    [key: string]: GraphNode;
+  };
+}
+
 /**
  * @description Graph Data Structure
- * @param {string} node name of initial node
+ * @param {GraphNode} node starting node
  *
- * @returns {object} graph
+ * @returns {Graph} graph
  */
 class Graph {
   public nodes: {
-    [key: string]: {
-      outgoingConnections: {
-        [key: string]: number;
-      };
-      incomingConnections: string[];
-    };
+    [key: string]: GraphNode;
   };
 
-  constructor(node: string) {
+  constructor(nodeName: string) {
     this.nodes = {};
-    this.nodes[node] = { outgoingConnections: {}, incomingConnections: [] };
-    this.nodes[node].outgoingConnections[node] = 0;
-    this.nodes[node].incomingConnections = [node];
+    this.nodes[nodeName] = new GraphNode(nodeName);
   }
 
-  /**
-   * @param {String} node node name
-   */
-  addNode(node: string) {
-    this.nodes[node] = { outgoingConnections: {}, incomingConnections: [] };
-    this.nodes[node].outgoingConnections[node] = 0;
-    this.nodes[node].incomingConnections = [node];
+  addNode(nodeName: string) {
+    const newNode = new GraphNode(nodeName);
+    this.nodes[nodeName] = newNode;
   }
 
-  /**
-   * @description adds a connection to the node passed in
-   * @param {string} node name of source node
-   * @param {string} connection name of endpoint node
-   * @param {number} weight weight of connection
-   * @param {boolean} [bidirectional=true] (optional) whether the connection go both ways
-   */
-  addConnection(
-    node: string,
-    connection: string,
-    weight: number,
-    bidirectional = true
-  ) {
-    // add neighbor & its weight to the node
-    this.nodes[node].outgoingConnections[connection] = weight;
-    // add neighbor to the list of incoming nodes
-    this.nodes[node].incomingConnections.push(connection);
-    // if the connection goes both ways, add it for the other node as well
-    if (bidirectional) {
-      this.nodes[connection].outgoingConnections[node] = weight;
-      this.nodes[connection].incomingConnections.push(node);
-    }
+  addConnection({
+    firstNodeName,
+    secondNodeName,
+    weight,
+  }: {
+    firstNodeName: string;
+    secondNodeName: string;
+    weight: number;
+  }) {
+    const firstNode = this.nodes[firstNodeName];
+    const secondNode = this.nodes[secondNodeName];
+    if (!firstNode || !secondNode)
+      throw Error("Cannot connect nodes that don't exist in the graph!");
+
+    firstNode.addConnection({ node: secondNode, weight });
+    secondNode.addConnection({ node: firstNode, weight });
   }
 
-  /**
-   * @description deletes a connection from the node passed in
-   * @param {string} node name of source node
-   * @param {string} connection name of endpoint node
-   * @param {boolean} [bidirectional=true] (optional) whether the deletion is for both directions of the connection
-   */
-  deleteConnection(node: string, connection: string, bidirectional = true) {
-    //delete node from connections
-    delete this.nodes[node].outgoingConnections[connection];
-    //delete node from incomingConnections
-    this.nodes[node].incomingConnections.splice(
-      this.nodes[node].incomingConnections.indexOf(connection),
-      1
-    );
-    if (bidirectional) {
-      delete this.nodes[connection].outgoingConnections[node];
-      this.nodes[connection].incomingConnections.splice(
-        this.nodes[connection].incomingConnections.indexOf(node),
-        1
-      );
-    }
+  deleteConnection(firstNodeName: string, secodnNodeName: string) {
+    const firstNode = this.nodes[firstNodeName];
+    const secondNode = this.nodes[secodnNodeName];
+    if (!firstNode || !secondNode) return;
+
+    firstNode.removeConnection(secodnNodeName);
   }
 
-  /**
-   * @description deletes node and all connections to and from it
-   * @param {string} node name of source node
-   */
-  deleteNode(node: string) {
-    //loop through incoming nodes to remove their connection
-    for (let i = this.nodes[node].incomingConnections.length - 1; i >= 0; i--) {
-      let incomingNode = this.nodes[node].incomingConnections[i];
-      delete this.nodes[incomingNode].outgoingConnections[node];
-    }
-    //delete all references to this node in other incomingConnections arrays
-    const outgoingNodes = Object.keys(this.nodes[node].outgoingConnections);
+  deleteNode(nodeName: string) {
+    const nodeToDelete = this.nodes[nodeName];
+    if (!nodeToDelete) return;
 
-    outgoingNodes.forEach((e) => {
-      const nodeIndex = this.nodes[e].incomingConnections.indexOf(node);
-      this.nodes[e].incomingConnections.splice(nodeIndex, 1);
+    const connectionNames = Object.keys(nodeToDelete.connections);
+    connectionNames.forEach((neighborName) => {
+      this.deleteConnection(nodeName, neighborName);
     });
 
-    //finally, remove this node
-    delete this.nodes[node];
+    delete this.nodes[nodeName];
   }
 }
 

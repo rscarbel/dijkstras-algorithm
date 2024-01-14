@@ -4,8 +4,9 @@ interface TopBarProps {
   reloadAction: any;
   startNode: string;
   endNode: string;
-  path: any;
+  path: string[];
   clearSelections: any;
+  totalWeight: number;
 }
 
 const TopBar: React.FC<TopBarProps> = ({
@@ -14,6 +15,7 @@ const TopBar: React.FC<TopBarProps> = ({
   endNode,
   path,
   clearSelections,
+  totalWeight,
 }) => {
   const componentStyle = {
     width: '100%',
@@ -110,19 +112,19 @@ const TopBar: React.FC<TopBarProps> = ({
         style={{ ...textStyle, flexGrow: 5, height: '100%', flexWrap: 'wrap' }}
       >
         <strong>Path:</strong>{' '}
-        {path ? path.print().join(' -> ') : 'No Path Exists'}
+        {path.length ? path.join(' -> ') : 'No Path Exists'}
       </p>
       <div style={{ flexGrow: 1 }}>
         <p style={{ marginRight: '5px', textAlign: 'left' }}>
           <strong>Total weight</strong>
           <br />
-          {path?.length ? Math.floor(path.weight) : 'n/a'}
+          {totalWeight}
         </p>
         <br />
         <p style={{ marginRight: '5px', textAlign: 'left' }}>
           <strong>Number of paths</strong>
           <br />
-          {path?.length ? path.length - 1 : 'n/a'}
+          {path.length ? path.length - 1 : 'n/a'}
         </p>
       </div>
     </div>
